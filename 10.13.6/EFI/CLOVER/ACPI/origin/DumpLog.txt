@@ -1,0 +1,78 @@
+7:417  5:010  Found UEFI Acpi 2.0 RSDP at 6FFFD014
+7:417  0:000  Saving ACPI tables from RSDP 6FFFD014 to EFI\CLOVER\ACPI\origin ...
+7:417  0:000   6FFFD014: 'RSD PTR ', Rev: 2 (Acpi 2.0 or newer), Len: 36 -> RSDP.aml
+7:421  0:003    (Xsdt: 6FFDA188, Rsdt: 6FFDA0C4)
+7:421  0:000    6FFDA188: 'XSDT', 'SLIC-MPC', Rev: 1, Len: 260 -> XSDT.aml
+7:424  0:002    6FFDA0C4: 'RSDT', 'SLIC-MPC', Rev: 1, Len: 148 -> RSDT.aml
+7:426  0:002    Tables in Xsdt: 28
+7:426  0:000    0. 6FFDF000: 'FACP', 'SLIC-MPC', Rev: 5, Len: 244 -> FACP.aml
+7:428  0:002        (Dsdt: 6FFBC000, Facs: 6FF69000, XDsdt: 6FFBC000, XFacs: 0)
+7:428  0:000        6FFBC000: 'DSDT', '820D', Rev: 2, Len: 119293 -> DSDT.aml
+7:436  0:007        6FF69000: 'FACS', Ver: 2, Len: 64 -> FACS.aml
+7:438  0:002    1. 6FFFC000: 'TCPA', '820D', Rev: 2, Len: 50 -> TCPA.aml
+7:441  0:002    2. 6FFFB000: 'UEFI', '820D', Rev: 1, Len: 566 -> UEFI.aml
+7:443  0:002    3. 6FFFA000: 'UEFI', '820D', Rev: 1, Len: 66 -> UEFI.aml
+7:447  0:003    4. 6FFF9000: 'SSDT', '820D', Rev: 2, Len: 1202 -> SSDT-0-820D.aml
+7:449  0:002    5. 6FFF8000: 'SSDT', '820D', Rev: 2, Len: 75 -> SSDT-1-820D.aml
+7:451  0:002    6. 6FFF7000: 'TPM2', '820D', Rev: 3, Len: 52 -> TPM2.aml
+7:454  0:002    7. 6FFF0000: 'SSDT', '820D', Rev: 1, Len: 28444 -> SSDT-2-820D.aml
+7:457  0:003    8. 6FFEF000: 'MSDM', 'SLIC-MPC', Rev: 3, Len: 85 -> MSDM.aml
+7:459  0:001    9. 6FFEA000: 'SSDT', '820D', Rev: 2, Len: 20064 -> SSDT-3-820D.aml
+7:462  0:002    10. 6FFE6000: 'SSDT', '820D', Rev: 2, Len: 13701 -> SSDT-4-820D.aml
+7:464  0:002    11. 6FFE5000: 'DBGP', '820D', Rev: 1, Len: 52 -> DBGP.aml
+7:468  0:003    12. 6FFE4000: 'DBG2', '820D', Rev: 0, Len: 84 -> DBG2.aml
+7:470  0:002    13. 6FFE3000: 'ASF!', '820D', Rev: 32, Len: 165 -> ASF!.aml
+7:472  0:002    14. 6FFE2000: 'ASPT', '820D', Rev: 7, Len: 52 -> ASPT.aml
+7:474  0:002    15. 6FFE1000: 'BOOT', '820D', Rev: 1, Len: 40 -> BOOT.aml
+7:476  0:001    16. 6FFE0000: 'DBGP', '820D', Rev: 1, Len: 52 -> DBGP.aml
+7:479  0:002    17. 6FFDE000: 'HPET', '820D', Rev: 1, Len: 56 -> HPET.aml
+7:481  0:001    18. 6FFDD000: 'LPIT', '820D', Rev: 1, Len: 148 -> LPIT.aml
+7:483  0:002    19. 6FFDC000: 'APIC', '820D', Rev: 3, Len: 188 -> APIC.aml
+7:485  0:002    20. 6FFDB000: 'MCFG', '820D', Rev: 1, Len: 60 -> MCFG.aml
+7:487  0:001    21. 6FFBB000: 'SSDT', '820D', Rev: 1, Len: 724 -> SSDT-5-820D.aml
+7:489  0:001    22. 6FFB8000: 'SSDT', '820D', Rev: 2, Len: 11182 -> SSDT-6-820D.aml
+7:492  0:002    23. 6FFB7000: 'SSDT', '820D', Rev: 2, Len: 3699 -> SSDT-7-820D.aml (Found hidden SSDT 7 pcs)
+7:494  0:001        * 6FCA6618: 'SSDT', 'Cpu0Ist', Rev: 2, Len: 1401  53 53 44 54 79 05 00 00 02 FB 50 6D 52 65 66 00 Internal length = 1401 -> SSDT-x7_0-Cpu0Ist.aml
+7:496  0:002        * 6FCA6018: 'SSDT', 'ApIst', Rev: 2, Len: 1450  53 53 44 54 AA 05 00 00 02 D1 50 6D 52 65 66 00 Internal length = 1450 -> SSDT-x7_1-ApIst.aml
+7:499  0:003        * 6FCA6C18: 'SSDT', 'Cpu0Cst', Rev: 2, Len: 895  53 53 44 54 7F 03 00 00 02 68 50 6D 52 65 66 00 Internal length = 895 -> SSDT-x7_2-Cpu0Cst.aml
+7:501  0:002        * 6FCA4C18: 'SSDT', 'ApCst', Rev: 2, Len: 281  53 53 44 54 19 01 00 00 02 ED 50 6D 52 65 66 00 Internal length = 281 -> SSDT-x7_3-ApCst.aml
+7:503  0:002        * 6FCA5F18: 'SSDT', 'Cpu0Hwp', Rev: 2, Len: 142  53 53 44 54 8E 00 00 00 02 2E 50 6D 52 65 66 00 Internal length = 142 -> SSDT-x7_4-Cpu0Hwp.aml
+7:506  0:002        * 6FCA4A98: 'SSDT', 'ApHwp', Rev: 2, Len: 281  53 53 44 54 19 01 00 00 02 00 50 6D 52 65 66 00 Internal length = 281 -> SSDT-x7_5-ApHwp.aml
+7:508  0:002        * 6FCA4D98: 'SSDT', 'HwpLvt', Rev: 2, Len: 304  53 53 44 54 30 01 00 00 02 88 50 6D 52 65 66 00 Internal length = 304 -> SSDT-x7_6-HwpLvt.aml
+7:510  0:002  
+7:510  0:000    24. 6FFB2000: 'SSDT', '820D', Rev: 1, Len: 17302 -> SSDT-8-820D.aml
+7:513  0:002    25. 6FFB1000: 'DMAR', '820D', Rev: 1, Len: 168 -> DMAR.aml
+7:515  0:002    26. 6FFB0000: 'FPDT', 'SLIC-MPC', Rev: 1, Len: 68 -> FPDT.aml
+7:517  0:002    27. 6FFAF000: 'BGRT', '820D', Rev: 1, Len: 56 -> BGRT.aml
+7:520  0:002    Tables in Rsdt: 28
+7:520  0:000    0. 6FFDF000: 'FACP', 'SLIC-MPC', Rev: 5, Len: 244
+7:520  0:000        (Dsdt: 6FFBC000, Facs: 6FF69000, XDsdt: 6FFBC000, XFacs: 0)
+7:520  0:000        6FFBC000: 'DSDT', '820D', Rev: 2, Len: 119293
+7:522  0:001        6FF69000: 'FACS', Ver: 2, Len: 64
+7:522  0:000    1. 6FFFC000: 'TCPA', '820D', Rev: 2, Len: 50
+7:522  0:000    2. 6FFFB000: 'UEFI', '820D', Rev: 1, Len: 566
+7:522  0:000    3. 6FFFA000: 'UEFI', '820D', Rev: 1, Len: 66
+7:522  0:000    4. 6FFF9000: 'SSDT', '820D', Rev: 2, Len: 1202
+7:522  0:000    5. 6FFF8000: 'SSDT', '820D', Rev: 2, Len: 75
+7:522  0:000    6. 6FFF7000: 'TPM2', '820D', Rev: 3, Len: 52
+7:522  0:000    7. 6FFF0000: 'SSDT', '820D', Rev: 1, Len: 28444
+7:522  0:000    8. 6FFEF000: 'MSDM', 'SLIC-MPC', Rev: 3, Len: 85
+7:522  0:000    9. 6FFEA000: 'SSDT', '820D', Rev: 2, Len: 20064
+7:522  0:000    10. 6FFE6000: 'SSDT', '820D', Rev: 2, Len: 13701
+7:522  0:000    11. 6FFE5000: 'DBGP', '820D', Rev: 1, Len: 52
+7:522  0:000    12. 6FFE4000: 'DBG2', '820D', Rev: 0, Len: 84
+7:522  0:000    13. 6FFE3000: 'ASF!', '820D', Rev: 32, Len: 165
+7:522  0:000    14. 6FFE2000: 'ASPT', '820D', Rev: 7, Len: 52
+7:522  0:000    15. 6FFE1000: 'BOOT', '820D', Rev: 1, Len: 40
+7:522  0:000    16. 6FFE0000: 'DBGP', '820D', Rev: 1, Len: 52
+7:522  0:000    17. 6FFDE000: 'HPET', '820D', Rev: 1, Len: 56
+7:522  0:000    18. 6FFDD000: 'LPIT', '820D', Rev: 1, Len: 148
+7:522  0:000    19. 6FFDC000: 'APIC', '820D', Rev: 3, Len: 188
+7:522  0:000    20. 6FFDB000: 'MCFG', '820D', Rev: 1, Len: 60
+7:522  0:000    21. 6FFBB000: 'SSDT', '820D', Rev: 1, Len: 724
+7:522  0:000    22. 6FFB8000: 'SSDT', '820D', Rev: 2, Len: 11182
+7:522  0:000    23. 6FFB7000: 'SSDT', '820D', Rev: 2, Len: 3699
+7:522  0:000    24. 6FFB2000: 'SSDT', '820D', Rev: 1, Len: 17302
+7:522  0:000    25. 6FFB1000: 'DMAR', '820D', Rev: 1, Len: 168
+7:522  0:000    26. 6FFB0000: 'FPDT', 'SLIC-MPC', Rev: 1, Len: 68
+7:522  0:000    27. 6FFAF000: 'BGRT', '820D', Rev: 1, Len: 56
