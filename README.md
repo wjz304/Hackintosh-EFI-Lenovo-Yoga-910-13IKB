@@ -3,35 +3,32 @@
 #### 介绍
 Hackintosh-EFI-Lenovo-Yoga-910-13IKB
 
-#### 软件架构
-软件架构说明
+#### 说明
+联想 Yoga 910-13IKB (4K) 的黑苹果 EFI
+
+1.  子文件夹 10.13.6 支持 macOS 10.13.6 [98%]
+已知问题:
+null
+
+2.  子文件夹 10.14.6 支持 macOS 10.14.6 [98%]
+已知问题:
+null
+
+3.  子文件夹 10.15.4 支持 macOS 10.15.4 [60%]
+已知问题:
+显卡显示31M, 开关机慢, 背光亮度相关.
 
 
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### 笔记本配置
+| 规格     | 详细信息                                                                       |
+| -------- | ------------------------------------------------------------------------------ |
+| 型号     | Lenovo Yoga 910-13IKB                                                          |
+| 主板     | Lenovo Agera ( 7th Generation Intel Processor Family I/O - 9D58 笔记本芯片组 ) |
+| 处理器   | Intel(R) Core(TM) i7-7500U @ 2.70GHz                                           |
+| 内存     | 16 GB 2133 MHz ( 三星 )                                                        |
+| 硬盘     | 三星 MZVLW1T0HMLH-000L2 ( 1024 GB / 固态硬盘 )                                 |
+| 显卡     | Intel HD Graphics 620                                                          |
+| 无线网卡 | 博通 Broadcom 802.11ac Network Adapter (博通 BCM94352Z)                        |
+| 声卡     |                                                                                |
+| 触摸板   |                                                                                |
+| 触摸屏   |                                                                                |
