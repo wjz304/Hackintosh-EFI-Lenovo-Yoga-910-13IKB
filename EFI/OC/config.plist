@@ -347,7 +347,7 @@
 			<key>SignalAppleOS</key>
 			<false/>
 			<key>SyncRuntimePermissions</key>
-			<true/>
+			<false/>
 		</dict>
 	</dict>
 	<key>DeviceProperties</key>
@@ -1073,7 +1073,7 @@
 		<key>Quirks</key>
 		<dict>
 			<key>AppleCpuPmCfgLock</key>
-			<false/>
+			<true/>
 			<key>AppleXcpmCfgLock</key>
 			<true/>
 			<key>AppleXcpmExtraMsrs</key>
@@ -1210,7 +1210,7 @@
 			<key>ScanPolicy</key>
 			<integer>0</integer>
 			<key>SecureBootModel</key>
-			<string>Default</string>
+			<string>Disabled</string>
 			<key>Vault</key>
 			<string>Optional</string>
 		</dict>
@@ -1283,9 +1283,9 @@
 			<key>MaxBIOSVersion</key>
 			<false/>
 			<key>MLB</key>
-			<string>C02711501QXJ1JHJC</string>
+			<string>C02802207GUHRPC1H</string>
 			<key>ProcessorType</key>
-			<integer>1797</integer>
+			<integer>1541</integer>
 			<key>ROM</key>
 			<data>57sV496w</data>
 			<key>SpoofVendor</key>
@@ -1293,11 +1293,11 @@
 			<key>SystemMemoryStatus</key>
 			<string>Auto</string>
 			<key>SystemProductName</key>
-			<string>MacBookPro14,3</string>
+			<string>MacBookPro14,2</string>
 			<key>SystemSerialNumber</key>
-			<string>C02TFPZSHTD5</string>
+			<string>C02W3036HV2N</string>
 			<key>SystemUUID</key>
-			<string>7F792BCB-7E5B-4ABD-8323-2860DEDE3AC6</string>
+			<string>A5A0BB0F-5D92-41EA-8D2D-BB90C637F959</string>
 		</dict>
 		<key>UpdateDataHub</key>
 		<true/>
