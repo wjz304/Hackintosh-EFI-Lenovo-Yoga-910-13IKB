@@ -5,7 +5,7 @@ Lenovo-Yoga-910-13IKB-Hackintosh
 
 ## 说明  
 联想 Yoga 910-13IKB (4K) 的黑苹果 EFI
-当前支持 Monterey 12.0b10
+当前支持 Monterey 12.2
 
  
 ## 配置  
