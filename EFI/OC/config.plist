@@ -8,7 +8,7 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string></string>
+				<string>Fixes AWAC system clock</string>
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
@@ -428,7 +428,7 @@
 				<key>BundlePath</key>
 				<string>Lilu.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.6.0 | Patch engine</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -446,7 +446,7 @@
 				<key>BundlePath</key>
 				<string>VirtualSMC.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.2.8 | Advanced SMC emulation</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -464,7 +464,7 @@
 				<key>BundlePath</key>
 				<string>ECEnabler.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.0.2</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -482,7 +482,7 @@
 				<key>BundlePath</key>
 				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.5.7</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -500,7 +500,7 @@
 				<key>BundlePath</key>
 				<string>SMCBatteryManager.kext</string>
 				<key>Comment</key>
-				<string>SMCBatteryManager</string>
+				<string>V1.2.8 | SMCBatteryManager</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -518,7 +518,7 @@
 				<key>BundlePath</key>
 				<string>SMCProcessor.kext</string>
 				<key>Comment</key>
-				<string>SMCProcessor</string>
+				<string>V1.2.8 | VirtualSMC Plugin</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -536,7 +536,7 @@
 				<key>BundlePath</key>
 				<string>SMCSuperIO.kext</string>
 				<key>Comment</key>
-				<string>SMCSuperIO</string>
+				<string>V1.2.8 | VirtualSMC Plugin</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -554,7 +554,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.6.9 | Audio patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -572,7 +572,7 @@
 				<key>BundlePath</key>
 				<string>CPUFriend.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.2.4</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -590,7 +590,7 @@
 				<key>BundlePath</key>
 				<string>CPUFriendDataProvider.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.0.0</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -608,7 +608,7 @@
 				<key>BundlePath</key>
 				<string>NVMeFix.kext</string>
 				<key>Comment</key>
-				<string>NVMeFix</string>
+				<string>V1.0.9 | NVMeFix</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -626,7 +626,7 @@
 				<key>BundlePath</key>
 				<string>HibernationFixup.kext</string>
 				<key>Comment</key>
-				<string>HibernationFixup</string>
+				<string>V1.4.5 | HibernationFixup</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -644,7 +644,7 @@
 				<key>BundlePath</key>
 				<string>ThunderboltReset.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.0.0d1</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -662,7 +662,7 @@
 				<key>BundlePath</key>
 				<string>USBPorts.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.0</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -680,7 +680,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooI2CServices.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -698,7 +698,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooGPIO.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.1</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -716,7 +716,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.1.1</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -734,7 +734,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.6.5</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -752,7 +752,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2CHID.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -770,7 +770,7 @@
 				<key>BundlePath</key>
 				<string>VoodooTSCSync.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.5.0</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -788,7 +788,7 @@
 				<key>BundlePath</key>
 				<string>VoodooInput.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.1.1</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -806,7 +806,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.2.7</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -824,7 +824,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.2.7</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -842,7 +842,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.2.7</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -860,7 +860,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.2.7</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -878,7 +878,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.1.3</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -896,7 +896,7 @@
 				<key>BundlePath</key>
 				<string>BrightnessKeys.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.0.2</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -914,7 +914,7 @@
 				<key>BundlePath</key>
 				<string>NoTouchID.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.0.3</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -932,7 +932,7 @@
 				<key>BundlePath</key>
 				<string>AirportBrcmFixup.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.1.4</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -950,7 +950,7 @@
 				<key>BundlePath</key>
 				<string>AirportBrcmFixup.kext/Contents/PlugIns/AirPortBrcm4360_Injector.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.0</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -968,7 +968,7 @@
 				<key>BundlePath</key>
 				<string>AirportBrcmFixup.kext/Contents/PlugIns/AirPortBrcmNIC_Injector.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V1.0</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -986,7 +986,7 @@
 				<key>BundlePath</key>
 				<string>BlueToolFixup.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.6.1 | macOS 12 BT</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1004,7 +1004,7 @@
 				<key>BundlePath</key>
 				<string>BrcmBluetoothInjector.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.6.1</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -1022,7 +1022,7 @@
 				<key>BundlePath</key>
 				<string>BrcmFirmwareData.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.6.1</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1040,7 +1040,7 @@
 				<key>BundlePath</key>
 				<string>BrcmPatchRAM3.kext</string>
 				<key>Comment</key>
-				<string></string>
+				<string>V2.6.1</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1087,7 +1087,7 @@
 			<key>DisableIoMapper</key>
 			<true/>
 			<key>DisableLinkeditJettison</key>
-			<false/>
+			<true/>
 			<key>DisableRtcChecksum</key>
 			<false/>
 			<key>ExtendBTFeatureFlags</key>
@@ -1138,7 +1138,7 @@
 			<key>ConsoleAttributes</key>
 			<integer>0</integer>
 			<key>HibernateMode</key>
-			<string>None</string>
+			<string>Auto</string>
 			<key>HideAuxiliary</key>
 			<false/>
 			<key>LauncherOption</key>
@@ -1210,9 +1210,9 @@
 			<key>PasswordSalt</key>
 			<data></data>
 			<key>ScanPolicy</key>
-			<integer>0</integer>
+			<integer>33496835</integer>
 			<key>SecureBootModel</key>
-			<string>Disabled</string>
+			<string>Default</string>
 			<key>Vault</key>
 			<string>Optional</string>
 		</dict>
@@ -1242,7 +1242,7 @@
 				<key>boot-args</key>
 				<string>-v keepsyms=1 -brcmfxbeta igfxonln=1 igfxagdc=0 -igfxmpc</string>
 				<key>csr-active-config</key>
-				<data>7wcAAA==</data>
+				<data>7w8AAA==</data>
 				<key>prev-lang:kbd</key>
 				<data>emgtSGFuczoyNTI=</data>
 			</dict>
@@ -1287,7 +1287,7 @@
 			<key>MLB</key>
 			<string>C02802207GUHRPC1H</string>
 			<key>ProcessorType</key>
-			<integer>1541</integer>
+			<integer>0</integer>
 			<key>ROM</key>
 			<data>57sV496w</data>
 			<key>SpoofVendor</key>
@@ -1357,7 +1357,7 @@
 			<key>AudioCodec</key>
 			<integer>0</integer>
 			<key>AudioDevice</key>
-			<string></string>
+			<string>PciRoot(0x0)/Pci(0x1F,0x3)</string>
 			<key>AudioOutMask</key>
 			<integer>-1</integer>
 			<key>AudioSupport</key>
@@ -1421,6 +1421,16 @@
 				<key>Path</key>
 				<string>OpenCanopy.efi</string>
 			</dict>
+			<dict>
+				<key>Arguments</key>
+				<string></string>
+				<key>Comment</key>
+				<string></string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>CrScreenshotDxe.efi</string>
+			</dict>
 		</array>
 		<key>Input</key>
 		<dict>
@@ -1462,7 +1472,7 @@
 			<key>ReconnectOnResChange</key>
 			<false/>
 			<key>ReplaceTabWithSpace</key>
-			<true/>
+			<false/>
 			<key>Resolution</key>
 			<string>Max</string>
 			<key>SanitiseClearScreen</key>
@@ -1530,7 +1540,7 @@
 			<key>ForgeUefiSupport</key>
 			<false/>
 			<key>IgnoreInvalidFlexRatio</key>
-			<false/>
+			<true/>
 			<key>ReleaseUsbOwnership</key>
 			<true/>
 			<key>ReloadOptionRoms</key>
