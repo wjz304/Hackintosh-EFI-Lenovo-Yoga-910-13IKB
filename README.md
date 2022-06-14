@@ -4,8 +4,8 @@
 Lenovo-Yoga-910-13IKB-Hackintosh
 
 ## 说明  
-联想 Yoga 910-13IKB (4K) 的黑苹果 EFI
-当前支持 Monterey 12.3.1
+联想 Yoga 910-13IKB (4K) 的黑苹果 EFI  
+当前支持 Monterey & Ventura  
 
  
 ## 配置  
@@ -31,8 +31,8 @@ Lenovo-Yoga-910-13IKB-Hackintosh
  模块                       | 是否驱动
  -------------------------- | ----------- 
  WiFi（Broadcom BCM94352Z） | ✅
- 蓝牙                       | ✅ （有概率连不上设备）
- 集显/4k                    | ✅ 
+ 蓝牙                       | ✅
+ 集显/4k                    | ✅
  音频/耳机                  | ✅
  摄像头                     | ✅
  USB/Type-c/HDMI            | ✅
@@ -40,8 +40,10 @@ Lenovo-Yoga-910-13IKB-Hackintosh
  触摸板                     | ✅
  触摸屏                     | ✅
  电源/睡眠                  | ✅
+
+
 ## 预览
- ![Image text](screenshot/QQ图片20211006155046.png)   
+ ![Image text](screenshot/QQ图片20220614200153.png)   
  ![Image text](screenshot/QQ图片20211006155107.png)   
   
 ## 鸣谢
