@@ -32,10 +32,10 @@ Lenovo-Yoga-910-13IKB-Hackintosh
  -------------------------- | ----------- 
  WiFi（Broadcom BCM94352Z） | ✅
  蓝牙                       | ✅
- 集显/4k                    | ✅
+ 集显/HDMI/4k               | ✅
  音频/耳机                  | ✅
  摄像头                     | ✅
- USB/Type-c/HDMI            | ✅
+ USB/Type-c                | ✅
  键盘                       | ✅
  触摸板                     | ✅
  触摸屏                     | ✅
