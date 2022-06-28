@@ -49,8 +49,9 @@ class UpdateKexts():
             ['BrcmPatchRAM', 'EFI/OC/Kexts/BrcmFirmwareData.kext', 'BrcmFirmwareData.kext'],
             ['BrcmPatchRAM', 'EFI/OC/Kexts/BrcmPatchRAM3.kext', 'BrcmPatchRAM3.kext'],
         ]
+        self.dortaniaKextsJson = None
 
-    def upgradeDortaniaKexts(self, kextName, dstPath, srcPath):
+    def __initDortaniaJson(self):
         dortaniaUrl = 'https://raw.githubusercontent.com/dortania/build-repo/builds/config.json'
         #res = PM.request('GET', dortaniaUrl)
         #self.dortaniaKextsJson = json.loads(res.data.decode('utf-8'))
@@ -58,6 +59,12 @@ class UpdateKexts():
         with open('dortaniaConfig.json', mode="rb") as f:
             self.dortaniaKextsJson = json.loads(f.read())
         os.remove('dortaniaConfig.json')
+
+
+    def upgradeDortaniaKexts(self, kextName, dstPath, srcPath):
+        print('upgrade {}'.format(kextName))
+        if self.dortaniaKextsJson is None:
+            self.__initDortaniaJson()
 
         if self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['date_built'] > date_last:
             url = self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['links']['release']
@@ -75,6 +82,7 @@ class UpdateKexts():
             shutil.rmtree('./tmp')
     
     def upgradeI2C(self):
+        print('upgrade {}'.format('VoodooI2C and VoodooI2CHID'))
         res = PM.request('GET', 'https://api.github.com/reposVoodooI2C/VoodooI2C/releases')
         self.i2c = json.loads(res.data.decode('utf-8'))
         for i2cVer in self.i2c:
@@ -101,6 +109,7 @@ class UpdateKexts():
             break
         
     def upgradeEC(self):
+        print('upgrade {}'.format('ECEnabler'))
         res = PM.request('GET', 'https://api.github.com/1Revenger1/ECEnabler/releases')
         self.i2c = json.loads(res.data.decode('utf-8'))
         for i2cVer in self.i2c:
@@ -125,7 +134,7 @@ class UpdateKexts():
             break
 
     def upgradeIntel(self):
-
+        print('upgrade {}'.format('AirportItlwm'))
         res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
         self.itlwm = json.loads(res.data.decode('utf-8'))
         for itlwmVer in self.itlwm:
@@ -148,7 +157,8 @@ class UpdateKexts():
                         shutil.rmtree('./tmp')
                         break
             break
-        
+
+        print('upgrade {}'.format('IntelBluetoothFirmware and IntelBluetoothInjector'))
         res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/IntelBluetoothFirmware/releases')
         self.ibt = json.loads(res.data.decode('utf-8'))
         for ibtVer in self.ibt:
@@ -175,6 +185,7 @@ class UpdateKexts():
             break
 
     def upgradeOC(self):
+        print('upgrade {}'.format('OpenCore_Mod'))
         url = ''
         if self.alpha is False:
             url = 'https://api.github.com/repos/OlarilaHackintosh/OpenCore_NO_ACPI/releases'
