@@ -2,7 +2,7 @@
 
 import os, sys, json, shutil, datetime, zipfile
 import urllib3
-import git
+
 
 PM = urllib3.PoolManager()
 
@@ -17,9 +17,7 @@ try:
 except:
     pass
 
-stable = {
 
-}
 
 class UpdateKexts():
     def __init__(self, alpha = True) -> None:
