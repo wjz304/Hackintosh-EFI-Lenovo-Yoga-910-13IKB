@@ -28,4 +28,4 @@ jobs:
 #          pip3 install datetime urllib3
 
       - name: Run Updater
-        run: python3 -u .github/update.py ${{ secrets.GITHUB_TOKEN }}
+        run: python3 -u update.py ${{ secrets.GITHUB_TOKEN }}
