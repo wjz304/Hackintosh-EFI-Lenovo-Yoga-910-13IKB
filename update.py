@@ -65,7 +65,7 @@ class UpdateKexts():
             zf.extractall(dir)
         os.remove(fileName)
 
-    def __xcopy(srcPath, dstPath):
+    def __xcopy(self, srcPath, dstPath):
         if os.path.exists(dstPath):
             if os.path.isdir(dstPath):
                 shutil.rmtree(dstPath)
