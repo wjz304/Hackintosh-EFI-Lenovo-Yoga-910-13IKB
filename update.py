@@ -40,7 +40,7 @@ class UpdateKexts():
             # ['VoodooI2CHID', 'EFI/OC/Kexts/VoodooI2CHID.kext', 'VoodooI2CHID.kext'],
             # ['VoodooTSCSync', 'EFI/OC/Kexts/VoodooTSCSync.kext', 'VoodooTSCSync.kext'],
             ['VoodooInput', 'EFI/OC/Kexts/VoodooInput.kext', 'VoodooInput.kext'],
-            ['VoodooPS2Controller', 'EFI/OC/Kexts/VoodooPS2Controller.kext', 'VoodooPS2Controller.kext'],
+            ['VoodooPS2', 'EFI/OC/Kexts/VoodooPS2Controller.kext', 'VoodooPS2Controller.kext'],
             ['BrightnessKeys', 'EFI/OC/Kexts/BrightnessKeys.kext', 'BrightnessKeys.kext'],
             ['NoTouchID', 'EFI/OC/Kexts/NoTouchID.kext', 'NoTouchID.kext'],
             ['AirportBrcmFixup', 'EFI/OC/Kexts/AirportBrcmFixup.kext', 'AirportBrcmFixup.kext'],
