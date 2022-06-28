@@ -2,7 +2,7 @@
 
 import os, sys, json, shutil, datetime, zipfile
 import urllib3
-
+import wget
 
 PM = urllib3.PoolManager()
 
@@ -52,8 +52,13 @@ class UpdateKexts():
 
     def upgradeDortaniaKexts(self, kextName, dstPath, srcPath):
         dortaniaUrl = 'https://raw.githubusercontent.com/dortania/build-repo/builds/config.json'
-        res = PM.request('GET', dortaniaUrl)
-        self.dortaniaKextsJson = json.loads(res.data.decode('utf-8'))
+        #res = PM.request('GET', dortaniaUrl)
+        #self.dortaniaKextsJson = json.loads(res.data.decode('utf-8'))
+        wget.download(dortaniaUrl, out='dortaniaConfig.json')
+        with open('dortaniaConfig.json', mode="rb") as f:
+            self.dortaniaKextsJson = json.loads(f.read())
+        os.remove('dortaniaConfig.json')
+
         if self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['date_built'] > date_last:
             url = self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['links']['release']
             data = PM.request('GET', url)
@@ -95,6 +100,29 @@ class UpdateKexts():
                         break
             break
         
+    def upgradeEC(self):
+        res = PM.request('GET', 'https://api.github.com/1Revenger1/ECEnabler/releases')
+        self.i2c = json.loads(res.data.decode('utf-8'))
+        for i2cVer in self.i2c:
+            if self.alpha is False and 'alpha' in i2cVer['name'].lower():
+                continue
+            if i2cVer['published_at'] > date_last:
+                for item in i2cVer['assets']:
+                    if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
+                        url = item['browser_download_url']
+                        data = PM.request('GET', url)
+                        with open('./tmp.zip','wb') as f:   # with open( './'+url.split('/')[-1], 'wb') as f:
+                            f.write(data.data)
+
+                        with zipfile.ZipFile('./tmp.zip') as zf:
+                            zf.extractall('./tmp')
+                        os.remove('./tmp.zip')
+
+                        shutil.rmtree('EFI/OC/Kexts/ECEnabler.kext')
+                        shutil.copytree('./tmp/ECEnabler.kext', 'EFI/OC/Kexts/ECEnabler.kext')
+                        shutil.rmtree('./tmp')
+                        break
+            break
 
     def upgradeIntel(self):
 
@@ -204,6 +232,7 @@ class UpdateKexts():
 
         try:
             self.upgradeI2C()
+            self.upgradeEC()
         except:
             print('I2C Kexts update error!')
             return 2

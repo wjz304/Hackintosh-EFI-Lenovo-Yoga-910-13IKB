@@ -36,7 +36,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python3 -m pip install -U pip
-          pip3 install datetime urllib3
+          pip3 install datetime urllib3 wget
 
       - name: Run Updater
         run: python3 -u update.py ${{ secrets.GITHUB_TOKEN }}
