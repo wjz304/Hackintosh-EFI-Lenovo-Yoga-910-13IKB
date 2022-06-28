@@ -1,3 +1,11 @@
+#
+# Copyright (C) 2022 Ing
+#
+# This is free software, licensed under the MIT License.
+# See /LICENSE for more information.
+#
+
+
 name: update
 on:
   push:
@@ -21,6 +29,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
+          
+      - name: Checkout
+        uses: actions/checkout@main
 
       - name: Install Python Dependencies
         run: |
