@@ -17,12 +17,6 @@ jobs:
         with:
           ruby-version: 3.1.2
 
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: true
-          ref: github-actions
-
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
