@@ -22,8 +22,6 @@ except:
 class UpdateKexts():
     def __init__(self, alpha = True) -> None:
         self.alpha = True
-
-    def upgradeDortaniaKexts(self, kextName, dstPath, srcPath):
         self.kexts = [
             ['Lilu', 'EFI/OC/Kexts/Lilu.kext', 'Lilu.kext'],
             ['WhateverGreen', 'EFI/OC/Kexts/WhateverGreen.kext', 'WhateverGreen.kext'],
@@ -51,6 +49,8 @@ class UpdateKexts():
             ['BrcmPatchRAM', 'EFI/OC/Kexts/BrcmFirmwareData.kext', 'BrcmFirmwareData.kext'],
             ['BrcmPatchRAM', 'EFI/OC/Kexts/BrcmPatchRAM3.kext', 'BrcmPatchRAM3.kext'],
         ]
+
+    def upgradeDortaniaKexts(self, kextName, dstPath, srcPath):
         dortaniaUrl = 'https://raw.githubusercontent.com/dortania/build-repo/builds/config.json'
         res = PM.request('GET', dortaniaUrl)
         self.dortaniaKextsJson = json.loads(res.data.decode('utf-8'))
@@ -190,7 +190,7 @@ class UpdateKexts():
         pass
 
     def update(self):
-        
+
         if self.alpha is True:
             for kext in self.kexts:
                 try:
