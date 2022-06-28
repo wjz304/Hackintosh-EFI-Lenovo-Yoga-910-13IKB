@@ -10,7 +10,7 @@ PM = urllib3.PoolManager()
 date_curr = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
 date_last = ''
 
-date_last_file = 'datetime'
+date_last_file = 'VERTIME'
 try:
     with open(date_last_file,'r') as f:
         date_last = f.readline(1)
