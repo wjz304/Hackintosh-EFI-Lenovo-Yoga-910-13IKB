@@ -239,7 +239,7 @@ if __name__ == '__main__':
     ret = u1.update()
 
     if ret == 0:
-        with open(date_last_file, mode="wb") as f:
+        with open(date_last_file, mode="w") as f:
             f.write(datetime.datetime.now(tz=datetime.timezone.utc).isoformat())
     else:
         print('error!')
