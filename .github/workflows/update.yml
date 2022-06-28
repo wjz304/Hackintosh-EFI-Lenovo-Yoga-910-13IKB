@@ -1,0 +1,37 @@
+name: update
+on:
+  push:
+  schedule:
+    - cron: '* */6 * * *'
+  workflow_dispatch:
+env:
+  FORCE_INSTALL: 1
+  HAS_OPENSSL_BUILD: 1
+  HAS_OPENSSL_W32BUILD: 0
+  ACID32: 1
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1.2
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: true
+          ref: github-actions
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install Python Dependencies
+        run: |
+          python3 -m pip install -U pip
+          pip3 install datetime urllib3 zipfile
+
+      - name: Run Updater
+        run: python3 -u .github/update.py ${{ secrets.GITHUB_TOKEN }}
