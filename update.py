@@ -51,7 +51,34 @@ class UpdateKexts():
         ]
         self.dortaniaKextsJson = None
 
+    def __dlExt(self, url, dir):
+        fileName = './' + url.split('/')[-1]
+        if os.path.exists(fileName):
+             os.remove(fileName)
+        #data = PM.request('GET', url)
+        #with open(fileName,'wb') as f:
+        #    f.write(data.data)
+        wget.download(url, out=fileName)
+        if os.path.exists(dir):
+            shutil.rmtree(dir)
+        with zipfile.ZipFile(fileName) as zf:
+            zf.extractall(dir)
+        os.remove(fileName)
+
+    def __xcopy(srcPath, dstPath):
+        if os.path.exists(dstPath):
+            if os.path.isdir(dstPath):
+                shutil.rmtree(dstPath)
+            else:
+                os.remove(dstPath)
+        if os.path.exists(srcPath):
+            if os.path.isdir(srcPath):
+                shutil.copytree(srcPath, dstPath)
+            else:
+                shutil.copy(srcPath, dstPath)
+
     def __initDortaniaJson(self):
+        print('get {}'.format('dortania config.json'))
         dortaniaUrl = 'https://raw.githubusercontent.com/dortania/build-repo/builds/config.json'
         #res = PM.request('GET', dortaniaUrl)
         #self.dortaniaKextsJson = json.loads(res.data.decode('utf-8'))
@@ -59,27 +86,18 @@ class UpdateKexts():
         with open('dortaniaConfig.json', mode="rb") as f:
             self.dortaniaKextsJson = json.loads(f.read())
         os.remove('dortaniaConfig.json')
-
+        print('\n')
 
     def upgradeDortaniaKexts(self, kextName, dstPath, srcPath):
-        print('upgrade {}'.format(kextName))
         if self.dortaniaKextsJson is None:
             self.__initDortaniaJson()
-
+        print('upgrade {}'.format(kextName))
         if self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['date_built'] > date_last:
             url = self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['links']['release']
-            data = PM.request('GET', url)
-
-            with open('./tmp.zip','wb') as f:   # with open( './'+url.split('/')[-1], 'wb') as f:
-                f.write(data.data)
-
-            with zipfile.ZipFile('./tmp.zip') as zf:
-                zf.extractall('./tmp')
-            os.remove('./tmp.zip')
-
-            shutil.rmtree(dstPath)
-            shutil.copytree('./tmp/' + srcPath, dstPath)
+            self.__dlExt(url, './tmp')
+            self.__xcopy('./tmp/' + srcPath, dstPath)
             shutil.rmtree('./tmp')
+        print('\n')
     
     def upgradeI2C(self):
         print('upgrade {}'.format('VoodooI2C and VoodooI2CHID'))
@@ -92,21 +110,13 @@ class UpdateKexts():
                 for item in i2cVer['assets']:
                     if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
                         url = item['browser_download_url']
-                        data = PM.request('GET', url)
-                        with open('./tmp.zip','wb') as f:   # with open( './'+url.split('/')[-1], 'wb') as f:
-                            f.write(data.data)
-
-                        with zipfile.ZipFile('./tmp.zip') as zf:
-                            zf.extractall('./tmp')
-                        os.remove('./tmp.zip')
-
-                        shutil.rmtree('EFI/OC/Kexts/VoodooI2C.kext')
-                        shutil.copytree('./tmp/VoodooI2C.kext', 'EFI/OC/Kexts/VoodooI2C.kext')
-                        shutil.rmtree('EFI/OC/Kexts/VoodooI2CHID.kext')
-                        shutil.copytree('./tmp/VoodooI2CHID.kext', 'EFI/OC/Kexts/VoodooI2CHID.kext')
+                        self.__dlExt(url, './tmp')
+                        self.__xcopy('./tmp/VoodooI2C.kext', 'EFI/OC/Kexts/VoodooI2C.kext')
+                        self.__xcopy('./tmp/VoodooI2CHID.kext', 'EFI/OC/Kexts/VoodooI2CHID.kext')
                         shutil.rmtree('./tmp')
                         break
             break
+        print('\n')
         
     def upgradeEC(self):
         print('upgrade {}'.format('ECEnabler'))
@@ -119,19 +129,12 @@ class UpdateKexts():
                 for item in i2cVer['assets']:
                     if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
                         url = item['browser_download_url']
-                        data = PM.request('GET', url)
-                        with open('./tmp.zip','wb') as f:   # with open( './'+url.split('/')[-1], 'wb') as f:
-                            f.write(data.data)
-
-                        with zipfile.ZipFile('./tmp.zip') as zf:
-                            zf.extractall('./tmp')
-                        os.remove('./tmp.zip')
-
-                        shutil.rmtree('EFI/OC/Kexts/ECEnabler.kext')
-                        shutil.copytree('./tmp/ECEnabler.kext', 'EFI/OC/Kexts/ECEnabler.kext')
+                        self.__dlExt(url, './tmp')
+                        self.__xcopy('./tmp/ECEnabler.kext', 'EFI/OC/Kexts/ECEnabler.kext')
                         shutil.rmtree('./tmp')
                         break
             break
+        print('\n')
 
     def upgradeIntel(self):
         print('upgrade {}'.format('AirportItlwm'))
@@ -144,19 +147,12 @@ class UpdateKexts():
                 for item in itlwmVer['assets']:
                     if 'ventura' in item['name'].lower():
                         url = item['browser_download_url']
-                        data = PM.request('GET', url)
-                        with open('./tmp.zip','wb') as f:   # with open( './'+url.split('/')[-1], 'wb') as f:
-                            f.write(data.data)
-
-                        with zipfile.ZipFile('./tmp.zip') as zf:
-                            zf.extractall('./tmp')
-                        os.remove('./tmp.zip')
-
-                        shutil.rmtree('EFI/OC/Kexts/AirportItlwm.kext')
-                        shutil.copytree('./tmp/Ventura/AirportItlwm.kext', 'EFI/OC/Kexts/AirportItlwm.kext')
+                        self.__dlExt(url, './tmp')
+                        self.__xcopy('./tmp/Ventura/AirportItlwm.kext', 'EFI/OC/Kexts/AirportItlwm.kext')
                         shutil.rmtree('./tmp')
                         break
             break
+        print('\n')
 
         print('upgrade {}'.format('IntelBluetoothFirmware and IntelBluetoothInjector'))
         res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/IntelBluetoothFirmware/releases')
@@ -168,21 +164,13 @@ class UpdateKexts():
                 for item in ibtVer['assets']:
                     if '.zip' in item['name'].lower():
                         url = item['browser_download_url']
-                        data = PM.request('GET', url)
-                        with open('./tmp.zip','wb') as f:   # with open( './'+url.split('/')[-1], 'wb') as f:
-                            f.write(data.data)
-
-                        with zipfile.ZipFile('./tmp.zip') as zf:
-                            zf.extractall('./tmp')
-                        os.remove('./tmp.zip')
-
-                        shutil.rmtree('EFI/OC/Kexts/IntelBluetoothFirmware.kext')
-                        shutil.copytree('./tmp/IntelBluetoothFirmware.kext', 'EFI/OC/Kexts/IntelBluetoothFirmware.kext')
-                        shutil.rmtree('EFI/OC/Kexts/IntelBluetoothInjector.kext')
-                        shutil.copytree('./tmp/IntelBluetoothInjector.kext', 'EFI/OC/Kexts/IntelBluetoothInjector.kext')
+                        self.__dlExt(url, './tmp')
+                        self.__xcopy('./tmp/IntelBluetoothFirmware.kext', 'EFI/OC/Kexts/IntelBluetoothFirmware.kext')
+                        self.__xcopy('./tmp/IntelBluetoothInjector.kext', 'EFI/OC/Kexts/IntelBluetoothInjector.kext')
                         shutil.rmtree('./tmp')
                         break
             break
+        print('\n')
 
     def upgradeOC(self):
         print('upgrade {}'.format('OpenCore_Mod'))
@@ -199,34 +187,24 @@ class UpdateKexts():
                 for item in ocVer['assets']:
                     if 'release' in item['name'].lower():
                         url = item['browser_download_url']
-                        data = PM.request('GET', url)
-                        with open('./tmp.zip','wb') as f:   # with open( './'+url.split('/')[-1], 'wb') as f:
-                            f.write(data.data)
+                        self.__dlExt(url, './tmp')
 
-                        with zipfile.ZipFile('./tmp.zip') as zf:
-                            zf.extractall('./tmp')
-                        os.remove('./tmp.zip')
-
-                        os.remove('EFI/BOOT/BOOTx64.efi')
-                        shutil.copy('./tmp/X64/EFI/BOOT/BOOTx64.efi', 'EFI/BOOT/BOOTx64.efi')
+                        self.__xcopy('./tmp/X64/EFI/BOOT/BOOTx64.efi', 'EFI/BOOT/BOOTx64.efi')
 
                         os.listdir('EFI/OC/Drivers')
                         for efi in os.listdir('EFI/OC/Drivers'):
-                            os.remove('EFI/OC/{}'.format(efi))
-                            shutil.copy('./tmp/X64/EFI/OC/Drivers/{}'.format(efi), 'EFI/OC/Drivers/{}'.format(efi))
-
+                            self.__xcopy('./tmp/X64/EFI/OC/Drivers/{}'.format(efi), 'EFI/OC/Drivers/{}'.format(efi))
+                            
                         with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
                             background = f.read()
-                        shutil.rmtree('EFI/OC/Resources')
-                        shutil.copytree('./tmp/X64/EFI/OC/Resources', 'EFI/OC/Resources', ignore= shutil.ignore_patterns('.*'))
+                        self.__xcopy('./tmp/X64/EFI/OC/Resources', 'EFI/OC/Resources', ignore= shutil.ignore_patterns('.*'))
                         os.remove('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns')
                         with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
                             f.write(background)
                         break
             break
+        print('\n')
 
-
-        pass
 
     def update(self):
 
