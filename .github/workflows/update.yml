@@ -25,7 +25,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python3 -m pip install -U pip
-          pip3 install datetime urllib3 zipfile
+#          pip3 install datetime urllib3
 
       - name: Run Updater
         run: python3 -u .github/update.py ${{ secrets.GITHUB_TOKEN }}
