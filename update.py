@@ -65,7 +65,7 @@ class UpdateKexts():
             zf.extractall(dir)
         os.remove(fileName)
 
-    def __xcopy(self, srcPath, dstPath):
+    def __xcopy(self, srcPath, dstPath, ignore=None):
         if os.path.exists(dstPath):
             if os.path.isdir(dstPath):
                 shutil.rmtree(dstPath)
@@ -73,7 +73,7 @@ class UpdateKexts():
                 os.remove(dstPath)
         if os.path.exists(srcPath):
             if os.path.isdir(srcPath):
-                shutil.copytree(srcPath, dstPath)
+                shutil.copytree(srcPath, dstPath, ignore=ignore)
             else:
                 shutil.copy(srcPath, dstPath)
 
@@ -101,7 +101,7 @@ class UpdateKexts():
     
     def upgradeI2C(self):
         print('upgrade {}'.format('VoodooI2C and VoodooI2CHID'))
-        res = PM.request('GET', 'https://api.github.com/reposVoodooI2C/VoodooI2C/releases')
+        res = PM.request('GET', 'https://api.github.com/repos/VoodooI2C/VoodooI2C/releases')
         self.i2c = json.loads(res.data.decode('utf-8'))
         for i2cVer in self.i2c:
             if self.alpha is False and 'alpha' in i2cVer['name'].lower():
@@ -120,7 +120,7 @@ class UpdateKexts():
         
     def upgradeEC(self):
         print('upgrade {}'.format('ECEnabler'))
-        res = PM.request('GET', 'https://api.github.com/1Revenger1/ECEnabler/releases')
+        res = PM.request('GET', 'https://api.github.com/repos/1Revenger1/ECEnabler/releases')
         self.i2c = json.loads(res.data.decode('utf-8'))
         for i2cVer in self.i2c:
             if self.alpha is False and 'alpha' in i2cVer['name'].lower():
@@ -197,7 +197,7 @@ class UpdateKexts():
                             
                         with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
                             background = f.read()
-                        self.__xcopy('./tmp/X64/EFI/OC/Resources', 'EFI/OC/Resources', ignore= shutil.ignore_patterns('.*'))
+                        self.__xcopy('./tmp/X64/EFI/OC/Resources', 'EFI/OC/Resources', ignore = shutil.ignore_patterns('.*'))
                         os.remove('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns')
                         with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
                             f.write(background)
@@ -218,7 +218,7 @@ class UpdateKexts():
         else:
             # no idea
             pass
-
+        
         try:
             self.upgradeI2C()
             self.upgradeEC()
@@ -231,12 +231,14 @@ class UpdateKexts():
         except:
             print('OC update error!')
             return 3
+        
+        return 0
 
 if __name__ == '__main__':
     u1 = UpdateKexts(alpha = True)
     ret = u1.update()
 
-    if ret is True:
+    if ret == 0:
         with open(date_last_file, mode="wb") as f:
             f.write(datetime.datetime.now(tz=datetime.timezone.utc).isoformat())
     else:
