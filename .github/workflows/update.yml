@@ -56,19 +56,20 @@ jobs:
           git commit -m "update $(date +%Y-%m-%d" "%H:%M:%S)"
           git push -f
 
-      - name: Zip EFI
-        if: env.ischanges == 'true'
-        uses: vimtor/action-zip@v1
-        with:
-          files: EFI
-          dest: Hackintosh-EFI-Lenovo-Yoga-910-13IKB-$(date +"%Y.%m.%d-%H%M").zip
-
       - name: Generate release tag
         if: env.ischanges == 'true'
         id: tag
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
           echo "::set-output name=status::success"
+
+      - name: Zip EFI
+        if: env.ischanges == 'true'
+        uses: vimtor/action-zip@v1
+        with:
+          files: EFI
+          recursive: false
+          dest: Hackintosh-EFI-Lenovo-Yoga-910-13IKB-${{ steps.tag.outputs.release_tag }}.zip
 
       - name: Upload firmware to release
         if: env.ischanges == 'true'
