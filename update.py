@@ -13,10 +13,11 @@ date_last = ''
 date_last_file = 'VERTIME'
 try:
     with open(date_last_file,'r') as f:
-        date_last = f.readline(1)
+        date_last = f.read()
 except:
     pass
 
+date_last = ''   # Forced
 
 
 class UpdateKexts():
@@ -94,8 +95,12 @@ class UpdateKexts():
         if self.dortaniaKextsJson is None:
             self.__initDortaniaJson()
         print('upgrade {}'.format(kextName))
-        if self.dortaniaKextsJson[kextName]['versions'][0]['date_built'] > date_last:
-            url = self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['links']['release']
+        if self.dortaniaKextsJson[kextName]['versions'][0]['date_built'] > self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions']) - 1]['date_built']:
+            idx = 0
+        else:
+            idx = len(self.dortaniaKextsJson[kextName]['versions']) - 1
+        if self.dortaniaKextsJson[kextName]['versions'][idx]['date_built'] > date_last:
+            url = self.dortaniaKextsJson[kextName]['versions'][idx]['links']['release']
             self.__dlExt(url, './tmp')
             self.__xcopy('./tmp/' + srcPath, dstPath)
             shutil.rmtree('./tmp')
