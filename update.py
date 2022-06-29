@@ -53,6 +53,7 @@ class UpdateKexts():
 
     def __dlExt(self, url, dir):
         fileName = './' + url.split('/')[-1]
+        print('download {}'.format(fileName))
         if os.path.exists(fileName):
              os.remove(fileName)
         #data = PM.request('GET', url)
@@ -66,6 +67,7 @@ class UpdateKexts():
         os.remove(fileName)
 
     def __xcopy(self, srcPath, dstPath, ignore=None):
+        print('xcopy {} to {}'.format(srcPath, dstPath))
         if os.path.exists(dstPath):
             if os.path.isdir(dstPath):
                 shutil.rmtree(dstPath)
@@ -202,7 +204,7 @@ class UpdateKexts():
                         if os.path.exists('EFI/OC/Tools'):
                             for efi in os.listdir('EFI/OC/Tools'):
                                 self.__xcopy('./tmp/X64/EFI/OC/Tools/{}'.format(efi), 'EFI/OC/Tools/{}'.format(efi))
-                                
+
                         if os.path.exists('EFI/OC/Resources'):
                             background = ''
                             if os.path.exists('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns'):
