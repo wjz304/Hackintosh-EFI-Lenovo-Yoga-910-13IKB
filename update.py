@@ -143,7 +143,23 @@ class UpdateKexts():
                         break
             break
 
-
+    def upgradeRTL8125E(self):
+        print('upgrade {}'.format('ECEnabler'))
+        res = PM.request('GET', 'https://api.github.com/repos/Mieze/LucyRTL8125Ethernet/releases')
+        self.i2c = json.loads(res.data.decode('utf-8'))
+        for i2cVer in self.i2c:
+            if self.alpha is False and 'alpha' in i2cVer['name'].lower():
+                continue
+            if i2cVer['published_at'] > date_last:
+                for item in i2cVer['assets']:
+                    if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
+                        url = item['browser_download_url']
+                        self.__dlExt(url, './tmp')
+                        self.__xcopy('./tmp/ECEnabler.kext', 'EFI/OC/Kexts/ECEnabler.kext')
+                        shutil.rmtree('./tmp')
+                        break
+            break
+        
     def upgradeIntel(self):
         print('upgrade {}'.format('AirportItlwm'))
         res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
@@ -157,6 +173,13 @@ class UpdateKexts():
                         url = item['browser_download_url']
                         self.__dlExt(url, './tmp')
                         self.__xcopy('./tmp/Ventura/AirportItlwm.kext', 'EFI/OC/Kexts/AirportItlwm.kext')
+                        shutil.rmtree('./tmp')
+                        break
+                for item in itlwmVer['assets']:
+                    if not 'airport' in item['name'].lower() and '.zip' in item['name'].lower():
+                        url = item['browser_download_url']
+                        self.__dlExt(url, './tmp')
+                        self.__xcopy('./tmp/itlwm.kext', 'EFI/OC/Kexts/itlwm.kext')
                         shutil.rmtree('./tmp')
                         break
             break
@@ -242,9 +265,14 @@ class UpdateKexts():
         
         try:
             self.upgradeI2C()
-            self.upgradeEC()
         except:
             print('I2C Kexts update error!')
+            return 2
+        
+        try:
+            self.upgradeEC()
+        except:
+            print('EC Kexts update error!')
             return 2
             
         try:
