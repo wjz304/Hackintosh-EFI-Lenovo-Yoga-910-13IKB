@@ -66,6 +66,7 @@ class UpdateKexts():
         with zipfile.ZipFile(fileName) as zf:
             zf.extractall(dir)
         os.remove(fileName)
+        print('')
 
     def __xcopy(self, srcPath, dstPath, ignore=None):
         print('xcopy {} to {}'.format(srcPath, dstPath))
@@ -89,7 +90,7 @@ class UpdateKexts():
         with open('dortaniaConfig.json', mode="rb") as f:
             self.dortaniaKextsJson = json.loads(f.read())
         os.remove('dortaniaConfig.json')
-        print('\n')
+        print('')
 
     def upgradeDortaniaKexts(self, kextName, dstPath, srcPath):
         if self.dortaniaKextsJson is None:
@@ -104,7 +105,7 @@ class UpdateKexts():
             self.__dlExt(url, './tmp')
             self.__xcopy('./tmp/' + srcPath, dstPath)
             shutil.rmtree('./tmp')
-        print('\n')
+
     
     def upgradeI2C(self):
         print('upgrade {}'.format('VoodooI2C and VoodooI2CHID'))
@@ -123,7 +124,7 @@ class UpdateKexts():
                         shutil.rmtree('./tmp')
                         break
             break
-        print('\n')
+
         
     def upgradeEC(self):
         print('upgrade {}'.format('ECEnabler'))
@@ -141,7 +142,7 @@ class UpdateKexts():
                         shutil.rmtree('./tmp')
                         break
             break
-        print('\n')
+
 
     def upgradeIntel(self):
         print('upgrade {}'.format('AirportItlwm'))
@@ -159,7 +160,7 @@ class UpdateKexts():
                         shutil.rmtree('./tmp')
                         break
             break
-        print('\n')
+
 
         print('upgrade {}'.format('IntelBluetoothFirmware and IntelBluetoothInjector'))
         res = PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/IntelBluetoothFirmware/releases')
@@ -177,7 +178,7 @@ class UpdateKexts():
                         shutil.rmtree('./tmp')
                         break
             break
-        print('\n')
+
 
     def upgradeOC(self):
         print('upgrade {}'.format('OpenCore_Mod'))
@@ -223,7 +224,7 @@ class UpdateKexts():
                         shutil.rmtree('./tmp')
                         break
             break
-        print('\n')
+
 
 
     def update(self):
