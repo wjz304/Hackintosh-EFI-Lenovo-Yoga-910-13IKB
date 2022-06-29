@@ -65,6 +65,7 @@ jobs:
 
       - name: Generate release tag
         if: env.ischanges == 'true'
+        id: tag
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
           echo "::set-output name=status::success"
