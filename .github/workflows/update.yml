@@ -44,12 +44,12 @@ jobs:
       - name: Check for changes
         run: |
           if [ -n "$(git status -s | grep -v -w VERTIME)" ];then
-            echo "ischanges=false" >> $GITHUB_ENV
-          else
             echo "ischanges=true" >> $GITHUB_ENV
+          else
+            echo "ischanges=false" >> $GITHUB_ENV
           fi
 
-      - name: Commit and Push Only if file updated
+      - name: Commit and Push
         if: env.ischanges == 'true'
         run: |
           git add .
