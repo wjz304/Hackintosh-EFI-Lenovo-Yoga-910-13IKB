@@ -213,6 +213,7 @@ class UpdateKexts():
                             if background != '':
                                 with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
                                     f.write(background)
+                        shutil.rmtree('./tmp')
                         break
             break
         print('\n')
