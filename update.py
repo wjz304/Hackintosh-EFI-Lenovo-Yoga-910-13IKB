@@ -189,18 +189,30 @@ class UpdateKexts():
                         url = item['browser_download_url']
                         self.__dlExt(url, './tmp')
 
-                        self.__xcopy('./tmp/X64/EFI/BOOT/BOOTx64.efi', 'EFI/BOOT/BOOTx64.efi')
+                        if os.path.exists('EFI/BOOT/BOOTx64.efi'):
+                            self.__xcopy('./tmp/X64/EFI/BOOT/BOOTx64.efi', 'EFI/BOOT/BOOTx64.efi')
 
-                        os.listdir('EFI/OC/Drivers')
-                        for efi in os.listdir('EFI/OC/Drivers'):
-                            self.__xcopy('./tmp/X64/EFI/OC/Drivers/{}'.format(efi), 'EFI/OC/Drivers/{}'.format(efi))
-                            
-                        with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
-                            background = f.read()
-                        self.__xcopy('./tmp/X64/EFI/OC/Resources', 'EFI/OC/Resources', ignore = shutil.ignore_patterns('.*'))
-                        os.remove('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns')
-                        with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
-                            f.write(background)
+                        if os.path.exists('EFI/OC/OpenCore.efi'):
+                            self.__xcopy('./tmp/X64/EFI/OC/OpenCore.efi', 'EFI/OC/OpenCore.efi')
+
+                        if os.path.exists('EFI/OC/Drivers'):
+                            for efi in os.listdir('EFI/OC/Drivers'):
+                                self.__xcopy('./tmp/X64/EFI/OC/Drivers/{}'.format(efi), 'EFI/OC/Drivers/{}'.format(efi))
+
+                        if os.path.exists('EFI/OC/Tools'):
+                            for efi in os.listdir('EFI/OC/Tools'):
+                                self.__xcopy('./tmp/X64/EFI/OC/Tools/{}'.format(efi), 'EFI/OC/Tools/{}'.format(efi))
+                                
+                        if os.path.exists('EFI/OC/Resources'):
+                            background = ''
+                            if os.path.exists('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns'):
+                                with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
+                                    background = f.read()
+                            self.__xcopy('./tmp/X64/EFI/OC/Resources', 'EFI/OC/Resources', ignore = shutil.ignore_patterns('.*'))
+                            os.remove('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns')
+                            if background != '':
+                                with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
+                                    f.write(background)
                         break
             break
         print('\n')
@@ -233,6 +245,9 @@ class UpdateKexts():
             return 3
         
         return 0
+
+
+
 
 if __name__ == '__main__':
     u1 = UpdateKexts(alpha = True)

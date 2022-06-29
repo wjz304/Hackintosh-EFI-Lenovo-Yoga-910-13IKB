@@ -41,6 +41,42 @@ jobs:
       - name: Run Updater
         run: python3 -u update.py ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Check for changes
+        run: |
+          if [ -n "$(git status -s | grep -v -w VERTIME)" ];then
+            echo "ischanges=false" >> $GITHUB_ENV
+          else
+            echo "ischanges=true" >> $GITHUB_ENV
+          fi
+
+      - name: Commit and Push Only if file updated
+        if: env.ischanges == 'true'
+        run: |
+          git add .
+          git commit -m "update $(date +%Y-%m-%d" "%H:%M:%S)"
+          git push -f
+
+      - name: Zip EFI
+        if: env.ischanges == 'true'
+        uses: vimtor/action-zip@v1
+        with:
+          files: EFI
+          dest: Hackintosh-EFI-Lenovo-Yoga-910-13IKB-${{ env.binary }}.zip
+
+      - name: Generate release tag
+        if: env.ischanges == 'true'
+        run: |
+          echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+          echo "::set-output name=status::success"
+
+      - name: Upload firmware to release
+        if: env.ischanges == 'true'
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          files: Hackintosh*.zip
 
       - name: Delete workflow runs
         uses: GitRML/delete-workflow-runs@main
