@@ -94,7 +94,7 @@ class UpdateKexts():
         if self.dortaniaKextsJson is None:
             self.__initDortaniaJson()
         print('upgrade {}'.format(kextName))
-        if self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['date_built'] > date_last:
+        if self.dortaniaKextsJson[kextName]['versions'][0]['date_built'] > date_last:
             url = self.dortaniaKextsJson[kextName]['versions'][len(self.dortaniaKextsJson[kextName]['versions'])-1]['links']['release']
             self.__dlExt(url, './tmp')
             self.__xcopy('./tmp/' + srcPath, dstPath)
