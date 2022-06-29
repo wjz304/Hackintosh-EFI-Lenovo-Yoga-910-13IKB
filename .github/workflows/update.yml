@@ -67,7 +67,7 @@ jobs:
         if: env.ischanges == 'true'
         uses: vimtor/action-zip@v1
         with:
-          files: EFI
+          files: EFI README.md
           recursive: false
           dest: Hackintosh-EFI-Lenovo-Yoga-910-13IKB-${{ steps.tag.outputs.release_tag }}.zip
 

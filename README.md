@@ -1,7 +1,7 @@
 # Hackintosh-EFI-Lenovo-Yoga-910-13IKB
 
 ## 介绍  
-Lenovo-Yoga-910-13IKB-Hackintosh
+[Hackintosh-EFI-Lenovo-Yoga-910-13IKB](https://github.com/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB)
 
 ## 说明  
 联想 Yoga 910-13IKB (4K) 的黑苹果 EFI  
