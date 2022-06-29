@@ -50,7 +50,7 @@ jobs:
 
       - name: Check for changes
         run: |
-          if [ -n "$(git status -s | grep -v -w VERTIME)" ];then
+          if [ -n "$(git status -s | grep -v -w timestamp)" ];then
             echo "ischanges=true" >> $GITHUB_ENV
           else
             echo "ischanges=false" >> $GITHUB_ENV
@@ -69,6 +69,7 @@ jobs:
         run: |
           echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
           echo "::set-output name=status::success"
+          echo "::set-output name=repository_name::$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')"
 
       - name: Zip EFI
         if: env.ischanges == 'true'
@@ -76,7 +77,7 @@ jobs:
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ secrets.REPOSITORY_NAME }}-${{ steps.tag.outputs.release_tag }}.zip
+          dest: ${{ steps.tag.outputs.repository_name }}-${{ steps.tag.outputs.release_tag }}.zip
 
       - name: Upload firmware to release
         if: env.ischanges == 'true'
@@ -88,7 +89,7 @@ jobs:
           files: Hackintosh*.zip
 
       - name: Delete workflow runs
-        uses: GitRML/delete-workflow-runs@main
+        uses: Mattraks/delete-workflow-runs@main
         with:
           retain_days: 1
           keep_minimum_runs: 3
