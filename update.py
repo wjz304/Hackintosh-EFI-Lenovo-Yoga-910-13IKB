@@ -5,11 +5,12 @@
 # See /LICENSE for more information.
 #
 
-import os, sys, json, shutil, datetime, zipfile
+import os, sys, json, shutil, datetime, zipfile, platform
 import urllib3
 import wget
 
-PM = urllib3.PoolManager()
+
+PM = urllib3.PoolManager(headers={'user-agent': 'Python-urllib/3.0'})  # give github a user-agent so they don't block our requests
 
 
 date_curr = datetime.datetime.now(tz=datetime.timezone.utc).isoformat()
@@ -71,7 +72,8 @@ class UpdateKexts():
         with zipfile.ZipFile(fileName) as zf:
             zf.extractall(dir)
         os.remove(fileName)
-        print('')
+        if platform.system().lower() == 'windows':
+            print('')
 
     def __xcopy(self, srcPath, dstPath, ignore=None):
         print('xcopy {} to {}'.format(srcPath, dstPath))
@@ -95,7 +97,8 @@ class UpdateKexts():
         with open('dortaniaConfig.json', mode="rb") as f:
             self.dortaniaKextsJson = json.loads(f.read())
         os.remove('dortaniaConfig.json')
-        print('')
+        if platform.system().lower() == 'windows':
+            print('')
 
     def upgradeDortaniaKexts(self, kextName, dstPath, srcPath):
         if self.dortaniaKextsJson is None:
