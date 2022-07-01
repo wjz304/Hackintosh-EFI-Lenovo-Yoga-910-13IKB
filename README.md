@@ -6,7 +6,31 @@
 ## 说明  
 联想 Yoga 910-13IKB (4K) 的黑苹果 EFI  
 当前支持 Monterey & Ventura  
+<!--
+downloads
+<a href="https://github.com/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB/releases">
+<img src="https://img.shields.io/github/downloads/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB/total.svg?style=flat" alt="downloads"/>
+</a>
+-->
+<!-- version -->
+<a href="https://github.com/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB/releases">
+<img src="https://img.shields.io/github/release/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB.svg?style=flat" alt="latest version"/>
+</a>
+<!-- version -->
+<a href="https://github.com/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB/releases">
+<img src="https://img.shields.io/github/v/release/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB?include_prereleases&label=prereleases" alt="latest version"/>
+</a>
+<!-- platform -->
+<a href="https://github.com/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB">
+<img src="https://img.shields.io/badge/platform-macOS-lightgrey.svg?style=flat" alt="platform"/>
+</a>
+<!-- license -->
+<a href="https://github.com/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB/blob/master/License.txt">
+<img src="https://img.shields.io/github/license/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB.svg?style=flat" alt="license"/>
+</a>
 
+* release: 稳定版本。
+* prerelease: 每天自动更新kext和OC, 可能存在未知问题。如无必要请使用 release 版本。
  
 ## 配置  
  规格     | 详细信息
