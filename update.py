@@ -364,7 +364,7 @@ if __name__ == '__main__':
 
     headers = None
     if token is not None:
-        headers['Authorization'] = 'token ' + token
+        headers = { 'user-agent': 'Python-urllib/3.0', 'Authorization': 'token {}'.format(token) }
 
     u1 = UpdateKexts(headers = headers, alpha = alpha)
     if isitlwm is True:
