@@ -17,10 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: get oc version
-      - run: |
-          ocvalidate "EFI/OC/config.plist" || exit 1
-
       - uses: brokeyourbike/ocvalidate-action@v0.2
         with:
           opencore-version: '0.8.1'
