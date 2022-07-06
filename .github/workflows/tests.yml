@@ -10,6 +10,8 @@ on:
     paths:
       - 'EFI/OC/**.plist'
       - '!EFI/OC/Kexts/**'
+  workflow_dispatch:
+
 
 jobs:
   test-and-cover:
