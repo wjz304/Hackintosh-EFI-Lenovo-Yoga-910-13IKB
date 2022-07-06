@@ -3,16 +3,23 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'EFI/OC/**.plist'
+      - '!EFI/OC/Kexts/**'
   pull_request:
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'EFI/OC/**.plist'
+      - '!EFI/OC/Kexts/**'
+
 jobs:
   test-and-cover:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: get oc version
+      - run: |
+          ocvalidate "EFI/OC/config.plist" || exit 1
 
       - uses: brokeyourbike/ocvalidate-action@v0.2
         with:
