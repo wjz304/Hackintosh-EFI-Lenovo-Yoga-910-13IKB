@@ -1,4 +1,5 @@
-#
+#-*- coding:utf-8 -*-
+# 
 # Copyright (C) 2022 Ing <https://github.com/wjz304>
 # 
 # This is free software, licensed under the MIT License.
@@ -353,11 +354,11 @@ class UpdateKexts():
 def help():
     print('Usage: python3 update.py [options...]')
     print('options: [-c] [-o <rel | pre | mod>] [-i <ventura | monterey | big_sur>] [-k <stable | alpha>] [-t <token>]')
-    print('-c, --chanage                                ÊÇ·ñĞŞ¸Ä, Óë -o, -i, -k ¹«ÓÃ, eg: -c -o mod: ĞŞ¸ÄOCÎªMod°æ')
-    print('-o, --ocver <rel | pre | mod>                Ö¸¶¨OCµÄ°æ±¾')
-    print('-i, --itlwm <ventura | monterey | big_sur>   Ö¸¶¨intelÍø¿¨µÄ°æ±¾')
-    print('-k, --kexts <stable | alpha>                 Ö¸¶¨kextµÄ°æ±¾')
-    print('-h, --help                                   ÏÔÊ¾°ïÖú')
+    print('-c, --chanage                                æ˜¯å¦ä¿®æ”¹, ä¸ -o, -i, -k å…¬ç”¨, eg: -c -o mod: ä¿®æ”¹OCä¸ºModç‰ˆ')
+    print('-o, --ocver <rel | pre | mod>                æŒ‡å®šOCçš„ç‰ˆæœ¬')
+    print('-i, --itlwm <ventura | monterey | big_sur>   æŒ‡å®šintelç½‘å¡çš„ç‰ˆæœ¬')
+    print('-k, --kexts <stable | alpha>                 æŒ‡å®škextçš„ç‰ˆæœ¬')
+    print('-h, --help                                   æ˜¾ç¤ºå¸®åŠ©')
 
 
 if __name__ == '__main__':
