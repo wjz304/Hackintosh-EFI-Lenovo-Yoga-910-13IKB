@@ -6,7 +6,7 @@
 # See /LICENSE for more information.
 #
 
-import os, sys, json, shutil, getopt, datetime, zipfile, platform, plistlib
+import os, re, sys, json, shutil, getopt, datetime, zipfile, platform, plistlib
 
 try:
     import wget
@@ -68,6 +68,26 @@ class UpdateKexts():
             ['BrcmPatchRAM', 'EFI/OC/Kexts/BrcmPatchRAM3.kext', 'BrcmPatchRAM3.kext'],
         ]
         self.dortaniaKextsJson = None
+
+    def __macosVer(self, osx=''):
+        ver = 0
+        if osx.lower() in ['ventura', '22']:
+            ver = 13
+        elif osx.lower() in ['monterey', '21']:
+            ver = 12
+        elif osx.lower() in ['big_sur', '20']:
+            ver = 11
+        return ver
+
+    def __kernelVer(self, osx=''):
+        ver = 0
+        if osx.lower() in ['ventura', '13']:
+            ver = 22
+        elif osx.lower() in ['monterey', '12']:
+            ver = 21
+        elif osx.lower() in ['big_sur', '11']:
+            ver = 20
+        return ver
 
     def __dlExt(self, url, dir):
         fileName = './' + url.split('/')[-1]
@@ -190,12 +210,12 @@ class UpdateKexts():
                     if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
                         url = item['browser_download_url']
                         self.__dlExt(url, './tmp')
-                        self.__xcopy('./tmp/ECEnabler.kext', 'EFI/OC/Kexts/ECEnabler.kext')
+                        self.__xcopy('./tmp/{}/Release/LucyRTL8125Ethernet.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/LucyRTL8125Ethernet.kext')
                         shutil.rmtree('./tmp')
                         break
             break
         
-    def upgradeItlwm(self, itver = 'ventura'):
+    def upgradeItlwm(self, itver = ['ventura', 'monterey']):
         print('upgrade {}'.format('AirportItlwm_{} and itlwm'.format(itver)))
         res = self.PM.request('GET', 'https://api.github.com/repos/OpenIntelWireless/itlwm/releases')
         self.itlwm = json.loads(res.data.decode('utf-8'))
@@ -203,13 +223,113 @@ class UpdateKexts():
             if self.alpha is False and 'alpha' in itlwmVer['name'].lower():
                 continue
             if itlwmVer['published_at'] > date_last:
+                if len(itver) == 1:
+                    for f in os.listdir('EFI/OC/Kexts')[:]:
+                        if f.startswith('AirportItlwm-'):
+                            if os.path.isdir('EFI/OC/Kexts/{}'.format(f)):
+                                shutil.rmtree('EFI/OC/Kexts/{}'.format(f))
+                            else:
+                                os.remove('EFI/OC/Kexts/{}'.format(f))
+                    # plist
+                    for pf in os.listdir('EFI/OC/'):
+                        idx = 0
+                        if os.path.isfile('EFI/OC/{}'.format(pf)) and pf.endswith('.plist'):
+                            with open('EFI/OC/{}'.format(pf), 'rb') as f:
+                                pldata = plistlib.load(f, fmt=plistlib.FMT_XML)
+                            isdel = False
+                            ismod = False
+                            for kext in pldata['Kernel']['Add'][:]:
+                                if kext['BundlePath'].startswith('AirportItlwm-'):
+                                    isdel = True
+                                    pldata['Kernel']['Add'].remove(kext)
+                                if kext['BundlePath'] == 'AirportItlwm.kext':
+                                    ismod = True
+                                    kext['MaxKernel'] = '{}.99.99'.format(self.__kernelVer(itver[0]))
+                                    kext['MinKernel'] = '{}.00.00'.format(self.__kernelVer(itver[0]))
+                            if ismod == False:
+                                if idx == 0:
+                                    for index in range(len(pldata['Kernel']['Add'])):
+                                        if pldata['Kernel']['Add'][index]['BundlePath'] == 'itlwm.kext':
+                                            idx = index + 1
+                                kextTmp = {}
+                                kextTmp['Arch'] = 'Any'
+                                kextTmp['BundlePath'] = 'AirportItlwm.kext'
+                                kextTmp['Comment'] = 'V{} | {} Wi-Fi'.format(itlwmVer['name'][itlwmVer['name'].find('v')+1:itlwmVer['name'].find('-')], self.__macosVer(itver[0]))
+                                kextTmp['Enabled'] = True
+                                kextTmp['ExecutablePath'] = 'Contents/MacOS/AirportItlwm'
+                                kextTmp['MaxKernel'] = '{}.99.99'.format(self.__kernelVer(itver[0]))
+                                kextTmp['MinKernel'] = '{}.00.00'.format(self.__kernelVer(itver[0]))
+                                kextTmp['PlistPath'] = 'Contents/Info.plist'
+                                pldata['Kernel']['Add'].insert(idx, kextTmp)
+                                idx += 1
+                            with open('EFI/OC/{}'.format(pf), 'wb') as f:
+                                plistlib.dump(pldata, f, fmt=plistlib.FMT_XML)
+                                
+                else:
+                    kextitver = ['AirportItlwm-{}.kext'.format(i) for i in itver]
+                    for f in os.listdir('EFI/OC/Kexts')[:]:
+                        if f == 'AirportItlwm.kext' or (f.startswith('AirportItlwm-') and not f in kextitver):
+                            if os.path.isdir('EFI/OC/Kexts/{}'.format(f)):
+                                shutil.rmtree('EFI/OC/Kexts/{}'.format(f))
+                            else:
+                                os.remove('EFI/OC/Kexts/{}'.format(f))
+                    # plist
+                    for pf in os.listdir('EFI/OC/'):
+                        idx = 0
+                        if os.path.isfile('EFI/OC/{}'.format(pf)) and pf.endswith('.plist'):
+                            with open('EFI/OC/{}'.format(pf), 'rb') as f:
+                                pldata = plistlib.load(f, fmt=plistlib.FMT_XML)
+                            isdel = False
+                            for kext in pldata['Kernel']['Add'][:]:
+                                if kext['BundlePath'] == 'AirportItlwm.kext'or (kext['BundlePath'].startswith('AirportItlwm-') and not kext['BundlePath'] in kextitver):
+                                    isdel = True
+                                    pldata['Kernel']['Add'].remove(kext)
+                            for itveridx in itver:
+                                ismod = False
+                                for kext in pldata['Kernel']['Add']:
+                                    if kext['BundlePath'] == 'AirportItlwm-{}.kext'.format(itveridx):
+                                        ismod = True
+                                        kext['MaxKernel'] = '{}.99.99'.format(self.__kernelVer(itveridx))
+                                        kext['MinKernel'] = '{}.00.00'.format(self.__kernelVer(itveridx))
+                                        break
+                                if ismod == False:
+                                    if idx == 0:
+                                        for index in range(len(pldata['Kernel']['Add'])):
+                                            if pldata['Kernel']['Add'][index]['BundlePath'] == 'itlwm.kext':
+                                                idx = index + 1
+                                    kextTmp = {}
+                                    kextTmp['Arch'] = 'Any'
+                                    kextTmp['BundlePath'] = 'AirportItlwm-{}.kext'.format(itveridx)
+                                    kextTmp['Comment'] = 'V{} | {} Wi-Fi'.format(itlwmVer['name'][itlwmVer['name'].find('v')+1:itlwmVer['name'].find('-')], self.__macosVer(itveridx))
+                                    kextTmp['Enabled'] = True
+                                    kextTmp['ExecutablePath'] = 'Contents/MacOS/AirportItlwm'
+                                    kextTmp['MaxKernel'] = '{}.99.99'.format(self.__kernelVer(itveridx))
+                                    kextTmp['MinKernel'] = '{}.00.00'.format(self.__kernelVer(itveridx))
+                                    kextTmp['PlistPath'] = 'Contents/Info.plist'
+                                    pldata['Kernel']['Add'].insert(idx, kextTmp)
+                                    idx += 1
+                            with open('EFI/OC/{}'.format(pf), 'wb') as f:
+                                plistlib.dump(pldata, f, fmt=plistlib.FMT_XML)
+
                 for item in itlwmVer['assets']:
-                    if itver in item['name'].lower():
-                        url = item['browser_download_url']
-                        self.__dlExt(url, './tmp')
-                        self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm.kext')
-                        shutil.rmtree('./tmp')
-                        break
+                    if len(itver) == 1:
+                        if itver[0] in item['name'].lower():
+                            # 
+                            url = item['browser_download_url']
+                            self.__dlExt(url, './tmp')
+                            self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm.kext')
+                            shutil.rmtree('./tmp')
+                            break
+                    else:
+                        for itveridx in itver:
+                            if itveridx in item['name'].lower():
+                                # 
+                                url = item['browser_download_url']
+                                self.__dlExt(url, './tmp')
+                                self.__xcopy('./tmp/{}/AirportItlwm.kext'.format(os.listdir('./tmp')[0]), 'EFI/OC/Kexts/AirportItlwm-{}.kext'.format(itveridx))
+                                shutil.rmtree('./tmp')
+                                break
+
                 for item in itlwmVer['assets']:
                     if not 'airport' in item['name'].lower() and '.zip' in item['name'].lower():
                         url = item['browser_download_url']
@@ -271,16 +391,24 @@ class UpdateKexts():
                             for efi in os.listdir('EFI/OC/Tools'):
                                 self.__xcopy('./tmp/X64/EFI/OC/Tools/{}'.format(efi), 'EFI/OC/Tools/{}'.format(efi))
 
-                        if ocver == 'mod' and os.path.exists('EFI/OC/Resources'):
-                            background = ''
-                            if os.path.exists('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns'):
-                                with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
-                                    background = f.read()
-                            self.__xcopy('./tmp/X64/EFI/OC/Resources', 'EFI/OC/Resources', ignore = shutil.ignore_patterns('.*'))
-                            os.remove('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns')
-                            if background != '':
-                                with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
-                                    f.write(background)
+                        if os.path.exists('EFI/OC/Resources') and os.path.exists('./tmp/X64/EFI/OC/Resources'):
+                            if os.path.exists('./tmp/X64/EFI/OC/Resources/Audio') and len(os.listdir('./tmp/X64/EFI/OC/Resources/Audio')) > 0:
+                                self.__xcopy('./tmp/X64/EFI/OC/Resources/Audio', 'EFI/OC/Resources/Audio', ignore = shutil.ignore_patterns('.*'))
+                            if os.path.exists('./tmp/X64/EFI/OC/Resources/Font') and len(os.listdir('./tmp/X64/EFI/OC/Resources/Font')) > 0:
+                                self.__xcopy('./tmp/X64/EFI/OC/Resources/Font', 'EFI/OC/Resources/Font', ignore = shutil.ignore_patterns('.*'))
+                            if os.path.exists('./tmp/X64/EFI/OC/Resources/Label') and len(os.listdir('./tmp/X64/EFI/OC/Resources/Label')) > 0:
+                                self.__xcopy('./tmp/X64/EFI/OC/Resources/Label', 'EFI/OC/Resources/Label', ignore = shutil.ignore_patterns('.*'))
+                            if os.path.exists('./tmp/X64/EFI/OC/Resources/Image') and len(os.listdir('./tmp/X64/EFI/OC/Resources/Image')) > 0:
+                                background = ''
+                                if os.path.exists('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns'):
+                                    with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="rb") as f:
+                                        background = f.read()
+                                self.__xcopy('./tmp/X64/EFI/OC/Resources/Image', 'EFI/OC/Resources/Image', ignore = shutil.ignore_patterns('.*'))
+                                os.remove('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns')
+                                if background != '':
+                                    with open('EFI/OC/Resources/Image/Acidanthera/GoldenGate/Background.icns', mode="wb") as f:
+                                        f.write(background)
+
                         shutil.rmtree('./tmp')
                         break
             break
@@ -356,7 +484,7 @@ def help():
     print('options: [-c] [-o <rel | pre | mod>] [-i <ventura | monterey | big_sur>] [-k <stable | alpha>] [-t <token>]')
     print('-c, --chanage                                是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
     print('-o, --ocver <rel | pre | mod>                指定OC的版本')
-    print('-i, --itlwm <ventura | monterey | big_sur>   指定intel网卡的版本')
+    print('-i, --itlwm <ventura | monterey | big_sur>   指定intel网卡的版本, 多版本以","分割')
     print('-k, --kexts <stable | alpha>                 指定kext的版本')
     print('-h, --help                                   显示帮助')
 
@@ -370,8 +498,8 @@ if __name__ == '__main__':
     
     isChanage = False
     ocver = ''
-    itlwm = ''
     kexts = ''
+    itlwm = []
     token = None
 
     for opt, arg in opts:
@@ -387,11 +515,12 @@ if __name__ == '__main__':
             else:
                 ocver = arg.lower()
         elif opt in ("-i", "--itlwm"):
-            if not arg.lower() in ('ventura', 'monterey', 'big_sur'):
+            itvers = [x.strip() for x in re.split(',| |\|',arg.lower()) if x.strip()!='']
+            if not set(itvers) <= set(['ventura', 'monterey', 'big_sur']):
                 help()
                 sys.exit()
             else:
-                itlwm = arg.lower()
+                itlwm = itvers
         elif opt in ("-k", "--kexts"):
             if not arg.lower() in ('stable', 'alpha'):
                 help()
@@ -404,8 +533,8 @@ if __name__ == '__main__':
     if isChanage is False:
         if ocver == '':
             ocver = 'mod'
-        if itlwm == '':
-            itlwm = 'ventura'
+        if itlwm == []:
+            itlwm = ['ventura', 'monterey']
         if kexts == '':
             kexts = 'alpha'
 
