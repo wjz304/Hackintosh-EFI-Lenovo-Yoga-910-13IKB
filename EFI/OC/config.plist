@@ -809,7 +809,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext/Contents/PlugIns/VoodooInput.kext</string>
 				<key>Comment</key>
-				<string>V1.1.1 | V1.1.3</string>
+				<string>V1.1.3 | V1.1.3</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -827,7 +827,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext</string>
 				<key>Comment</key>
-				<string>V2.6.5 | V2.7</string>
+				<string>V2.7 | V2.7</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
