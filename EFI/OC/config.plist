@@ -903,7 +903,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext</string>
 				<key>Comment</key>
-				<string>V2.3.1 | V2.2.9</string>
+				<string>V2.3.2 | V2.2.9</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -921,7 +921,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext</string>
 				<key>Comment</key>
-				<string>V2.3.1 | V2.2.9</string>
+				<string>V2.3.2 | V2.2.9</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -939,7 +939,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext</string>
 				<key>Comment</key>
-				<string>V2.3.1 | V2.2.9</string>
+				<string>V2.3.2 | V2.2.9</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -957,7 +957,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext</string>
 				<key>Comment</key>
-				<string>V2.3.1 | V2.2.9</string>
+				<string>V2.3.2 | V2.2.9</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -1083,7 +1083,7 @@
 				<key>BundlePath</key>
 				<string>BlueToolFixup.kext</string>
 				<key>Comment</key>
-				<string>V2.6.4 | macOS 12 BT</string>
+				<string>V2.6.5 | macOS 12 BT</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1101,7 +1101,7 @@
 				<key>BundlePath</key>
 				<string>BrcmBluetoothInjector.kext</string>
 				<key>Comment</key>
-				<string>V2.6.4 | V2.6.3</string>
+				<string>V2.6.5 | V2.6.3</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -1119,7 +1119,7 @@
 				<key>BundlePath</key>
 				<string>BrcmFirmwareData.kext</string>
 				<key>Comment</key>
-				<string>V2.6.4 | V2.6.3</string>
+				<string>V2.6.5 | V2.6.3</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1137,7 +1137,7 @@
 				<key>BundlePath</key>
 				<string>BrcmPatchRAM3.kext</string>
 				<key>Comment</key>
-				<string>V2.6.4 | V2.6.3</string>
+				<string>V2.6.5 | V2.6.3</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
