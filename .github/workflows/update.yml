@@ -53,7 +53,7 @@ jobs:
         run: |
           if [ -n "$(git status -s | grep -v -w timestamp)" ];then
             echo "ischanges=true" >> $GITHUB_ENV
-
+            echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
             ## '$GITHUB_ENV' needs to add 'EOF' when setting multiline text.
             # echo "changesbody=$(git status -s | grep -v -w timestamp)" >> $GITHUB_ENV
             echo 'changesbody<<EOF' >> $GITHUB_ENV
@@ -73,19 +73,13 @@ jobs:
           git commit -m "update $(date +%Y-%m-%d" "%H:%M:%S)"
           git push -f
 
-      - name: Generate release tag
-        if: env.ischanges == 'true'
-        run: |
-          echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
-          echo "name=repository_name=$(echo "$GITHUB_REPOSITORY" | awk -F / '{print $2}')" >> $GITHUB_ENV
-
       - name: Zip EFI Ventura
         if: env.ischanges == 'true'
         uses: vimtor/action-zip@v1
         with:
           files: EFI README.md
           recursive: false
-          dest: ${{ env.repository_name }}-${{ env.release_tag }}.zip
+          dest: ${{ github.event.repository.name }}-${{ env.release_tag }}.zip
 
       - name: Upload firmware to release
         if: env.ischanges == 'true'
@@ -103,3 +97,4 @@ jobs:
         with:
           retain_days: 1
           keep_minimum_runs: 3
+
