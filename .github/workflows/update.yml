@@ -12,6 +12,12 @@ on:
   schedule:
     - cron: '10 */6 * * *'
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'tag'
+        required: true
+        type: string
+
 env:
   FORCE_INSTALL: 1
   HAS_OPENSSL_BUILD: 1
@@ -53,7 +59,7 @@ jobs:
         run: |
           if [ -n "$(git status -s | grep -v -w timestamp)" ];then
             echo "ischanges=true" >> $GITHUB_ENV
-            echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
+
             ## '$GITHUB_ENV' needs to add 'EOF' when setting multiline text.
             # echo "changesbody=$(git status -s | grep -v -w timestamp)" >> $GITHUB_ENV
             echo 'changesbody<<EOF' >> $GITHUB_ENV
@@ -73,6 +79,15 @@ jobs:
           git commit -m "update $(date +%Y-%m-%d" "%H:%M:%S)"
           git push -f
 
+      - name: Generate release tag
+        if: env.ischanges == 'true' || github.event_name == 'workflow_dispatch'
+        id: tag
+        run: |
+          if [ ${{ env.ischanges }} == 'true' ]; then 
+            echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_ENV
+          else
+            echo "release_tag=${{ inputs.version }}" >> $GITHUB_ENV
+          fi
       - name: Zip EFI Ventura
         if: env.ischanges == 'true'
         uses: vimtor/action-zip@v1
@@ -82,7 +97,7 @@ jobs:
           dest: ${{ github.event.repository.name }}-${{ env.release_tag }}.zip
 
       - name: Upload firmware to release
-        if: env.ischanges == 'true'
+        if: env.ischanges == 'true' || github.event_name == 'workflow_dispatch'
         uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -90,7 +105,7 @@ jobs:
           tag_name: ${{ env.release_tag }}
           body: ${{ env.changesbody }}
           files: Hackintosh*.zip
-          prerelease: true
+          prerelease: ${{ env.ischanges }}
 
       #- name: Delete workflow runs
       #  uses: Mattraks/delete-workflow-runs@v2
