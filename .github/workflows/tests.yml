@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-and-cover:
-    runs-on: macos-12
+    runs-on: macos-11
     steps:
       - uses: actions/checkout@main
 
@@ -20,10 +20,9 @@ jobs:
 
       - name: Get OC-Mod
         run: |
-          # brew install curl jq
-          cat /etc/resolv.conf
+          brew install curl jq
 
-          ocmoddlurl=$(curl -L 'https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases/latest' | jq -r .assets[1].browser_download_url)
+          ocmoddlurl=$(curl -L "https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases/latest" | jq -r .assets[1].browser_download_url)
           curl -L ${ocmoddlurl} -o ocmod.zip
           unzip ocmod.zip -d ocmod
 
