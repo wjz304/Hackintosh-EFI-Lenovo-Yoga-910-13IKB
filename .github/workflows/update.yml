@@ -88,8 +88,9 @@ jobs:
           else
             echo "release_tag=${{ inputs.version }}" >> $GITHUB_ENV
           fi
-      - name: Zip EFI Ventura
-        if: env.ischanges == 'true'
+
+      - name: Zip EFI
+        if: env.ischanges == 'true' || github.event_name == 'workflow_dispatch'
         uses: vimtor/action-zip@v1
         with:
           files: EFI README.md
