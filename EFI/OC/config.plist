@@ -579,7 +579,7 @@
 				<key>BundlePath</key>
 				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
-				<string>V1.6.2 | V1.6.0</string>
+				<string>V1.6.3 | V1.6.0</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -651,7 +651,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string>V1.7.7 | Audio patches</string>
+				<string>V1.7.8 | Audio patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -723,7 +723,7 @@
 				<key>BundlePath</key>
 				<string>HibernationFixup.kext</string>
 				<key>Comment</key>
-				<string>V1.4.7 | HibernationFixup</string>
+				<string>V1.4.8 | HibernationFixup</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -903,7 +903,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext</string>
 				<key>Comment</key>
-				<string>V2.3.2 | V2.2.9</string>
+				<string>V2.3.3 | V2.2.9</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -921,7 +921,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext</string>
 				<key>Comment</key>
-				<string>V2.3.2 | V2.2.9</string>
+				<string>V2.3.3 | V2.2.9</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -939,7 +939,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext</string>
 				<key>Comment</key>
-				<string>V2.3.2 | V2.2.9</string>
+				<string>V2.3.3 | V2.2.9</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -957,7 +957,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext</string>
 				<key>Comment</key>
-				<string>V2.3.2 | V2.2.9</string>
+				<string>V2.3.3 | V2.2.9</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
