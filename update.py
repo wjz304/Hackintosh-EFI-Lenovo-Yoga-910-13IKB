@@ -43,7 +43,7 @@ class UpdateKexts():
         self.kexts = [
             ['Lilu', 'EFI/OC/Kexts/Lilu.kext', 'Lilu.kext'],
             ['WhateverGreen', 'EFI/OC/Kexts/WhateverGreen.kext', 'WhateverGreen.kext'],
-            # ['ECEnabler', 'EFI/OC/Kexts/ECEnabler.kext', 'ECEnabler.kext'],
+            ['ECEnabler', 'EFI/OC/Kexts/ECEnabler.kext', 'ECEnabler.kext'],
             ['VirtualSMC', 'EFI/OC/Kexts/VirtualSMC.kext', 'Kexts/VirtualSMC.kext'],
             ['VirtualSMC', 'EFI/OC/Kexts/SMCSuperIO.kext', 'Kexts/SMCSuperIO.kext'],
             ['VirtualSMC', 'EFI/OC/Kexts/SMCProcessor.kext', 'Kexts/SMCProcessor.kext'],
@@ -54,8 +54,8 @@ class UpdateKexts():
             ['NVMeFix', 'EFI/OC/Kexts/NVMeFix.kext', 'NVMeFix.kext'],
             ['HibernationFixup', 'EFI/OC/Kexts/HibernationFixup.kext', 'HibernationFixup.kext'],
             # ['ThunderboltReset', 'EFI/OC/Kexts/ThunderboltReset.kext', 'ThunderboltReset.kext'],
-            # ['VoodooI2C', 'EFI/OC/Kexts/VoodooI2C.kext', 'VoodooI2C.kext'],
-            # ['VoodooI2CHID', 'EFI/OC/Kexts/VoodooI2CHID.kext', 'VoodooI2CHID.kext'],
+            ['VoodooI2C', 'EFI/OC/Kexts/VoodooI2C.kext', 'VoodooI2C.kext'],
+            ['VoodooI2CHID', 'EFI/OC/Kexts/VoodooI2CHID.kext', 'VoodooI2CHID.kext'],
             # ['VoodooTSCSync', 'EFI/OC/Kexts/VoodooTSCSync.kext', 'VoodooTSCSync.kext'],
             ['VoodooInput', 'EFI/OC/Kexts/VoodooInput.kext', 'VoodooInput.kext'],
             ['VoodooPS2', 'EFI/OC/Kexts/VoodooPS2Controller.kext', 'VoodooPS2Controller.kext'],
@@ -158,42 +158,6 @@ class UpdateKexts():
                         url = item['browser_download_url']
                         self.__dlExt(url, './tmp')
                         self.__xcopy('./tmp/' + srcPath, dstPath)
-                        shutil.rmtree('./tmp')
-                        break
-            break
-
-    def upgradeI2C(self):
-        print('upgrade {}'.format('VoodooI2C and VoodooI2CHID'))
-        res = self.PM.request('GET', 'https://api.github.com/repos/VoodooI2C/VoodooI2C/releases')
-        self.i2c = json.loads(res.data.decode('utf-8'))
-        for i2cVer in self.i2c:
-            if self.alpha is False and 'alpha' in i2cVer['name'].lower():
-                continue
-            if i2cVer['published_at'] > date_last:
-                for item in i2cVer['assets']:
-                    if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
-                        url = item['browser_download_url']
-                        self.__dlExt(url, './tmp')
-                        self.__xcopy('./tmp/VoodooI2C.kext', 'EFI/OC/Kexts/VoodooI2C.kext')
-                        self.__xcopy('./tmp/VoodooI2CHID.kext', 'EFI/OC/Kexts/VoodooI2CHID.kext')
-                        shutil.rmtree('./tmp')
-                        break
-            break
-
-        
-    def upgradeEC(self):
-        print('upgrade {}'.format('ECEnabler'))
-        res = self.PM.request('GET', 'https://api.github.com/repos/1Revenger1/ECEnabler/releases')
-        self.i2c = json.loads(res.data.decode('utf-8'))
-        for i2cVer in self.i2c:
-            if self.alpha is False and 'alpha' in i2cVer['name'].lower():
-                continue
-            if i2cVer['published_at'] > date_last:
-                for item in i2cVer['assets']:
-                    if not 'debug' in item['name'].lower() and '.zip' in item['name'].lower():
-                        url = item['browser_download_url']
-                        self.__dlExt(url, './tmp')
-                        self.__xcopy('./tmp/ECEnabler.kext', 'EFI/OC/Kexts/ECEnabler.kext')
                         shutil.rmtree('./tmp')
                         break
             break
@@ -418,16 +382,16 @@ class UpdateKexts():
         try:
             for pf in os.listdir('EFI/OC/'):
                 if os.path.isfile('EFI/OC/{}'.format(pf)) and pf.endswith('.plist'):
-                    isChanage = False
+                    isChange = False
                     with open('EFI/OC/{}'.format(pf), 'rb') as f:
                         pldata = plistlib.load(f, fmt=plistlib.FMT_XML)
                     for kext in pldata['Kernel']['Add']:
                         with open('EFI/OC/Kexts/{}/{}'.format(kext['BundlePath'], kext['PlistPath']), 'rb') as fp:
                             kextpldata = plistlib.load(fp, fmt=plistlib.FMT_XML)
                         if kext['Comment'].split('|')[0].strip().replace('V', '') != kextpldata['CFBundleVersion']:
-                            isChanage = True
+                            isChange = True
                             kext['Comment'] = 'V' + kextpldata['CFBundleVersion'] if kext['Comment'].split('|')[-1].strip() == '' else 'V' + kextpldata['CFBundleVersion'] + ' | ' + kext['Comment'].split('|')[-1].strip()
-                    if isChanage == False:
+                    if isChange == False:
                         continue
                     with open('EFI/OC/{}'.format(pf), 'wb') as f:
                         plistlib.dump(pldata, f, fmt=plistlib.FMT_XML)
@@ -437,11 +401,11 @@ class UpdateKexts():
             return 1
 
 
-    def update(self, ocver, itver, kever, ischanage = False):
+    def update(self, ocver, itver, kever, ischange = False):
         if kever == 'stable':
             self.alpha = False
 
-        if ischanage == False or (ischanage == True and kever != ''):
+        if ischange == False or (ischange == True and kever != ''):
             if self.alpha is True:
                 for kext in self.kexts:
                     try:
@@ -457,19 +421,7 @@ class UpdateKexts():
                         print('Dortania Kexts update error!')
                         return 1
 
-            try:
-                self.upgradeI2C()
-            except:
-                print('I2C Kexts update error!')
-                return 2
-
-            try:
-                self.upgradeEC()
-            except:
-                print('EC Kexts update error!')
-                return 2
-
-        if ischanage == False or (ischanage == True and ocver != ''):
+        if ischange == False or (ischange == True and ocver != ''):
             try:
                 self.upgradeOC(ocver)
             except:
@@ -483,7 +435,7 @@ class UpdateKexts():
 def help():
     print('Usage: python3 update.py [options...]')
     print('options: [-c] [-o <rel | pre | mod>] [-i <ventura | monterey | big_sur>] [-k <stable | alpha>] [-t <token>]')
-    print('-c, --chanage                                是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
+    print('-c, --change                                 是否修改, 与 -o, -i, -k 公用, eg: -c -o mod: 修改OC为Mod版')
     print('-o, --ocver <rel | pre | mod>                指定OC的版本')
     print('-i, --itlwm <ventura | monterey | big_sur>   指定intel网卡的版本, 多版本以","分割')
     print('-k, --kexts <stable | alpha>                 指定kext的版本')
@@ -492,12 +444,12 @@ def help():
 
 if __name__ == '__main__':
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hco:i:k:t:",["help", "chanage", "ocver=", "itlwm=", "kexts=", "token="])
+        opts, args = getopt.getopt(sys.argv[1:], "hco:i:k:t:",["help", "change", "ocver=", "itlwm=", "kexts=", "token="])
     except getopt.GetoptError:
         help()
         sys.exit(9)
     
-    isChanage = False
+    isChange = False
     ocver = ''
     kexts = ''
     itlwm = []
@@ -507,8 +459,8 @@ if __name__ == '__main__':
         if opt == ("-h", "--help"):
             help()
             sys.exit()
-        elif opt in ("-c", "--chanage"):
-            isChanage = True
+        elif opt in ("-c", "--change"):
+            isChange = True
         elif opt in ("-o", "--ocver"):
             if not arg.lower() in ('rel', 'pre', 'mod'):
                 help()
@@ -531,9 +483,9 @@ if __name__ == '__main__':
         elif opt in ("-t", "--token"):
             token = arg
 
-    if isChanage is False:
+    if isChange is False:
         if ocver == '':
-            ocver = 'mod'
+            ocver = 'pre'
         if itlwm == []:
             itlwm = ['ventura', 'monterey']
         if kexts == '':
@@ -544,7 +496,7 @@ if __name__ == '__main__':
         headers = { 'user-agent': 'Python-urllib/3.0', 'Authorization': 'token {}'.format(token) }
 
     u1 = UpdateKexts(headers = headers)
-    ret = u1.update(ocver, itlwm, kexts, isChanage)
+    ret = u1.update(ocver, itlwm, kexts, isChange)
 
     if ret == 0:
         u1.checkKextsVer()    # This will change the format of plist file
