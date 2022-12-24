@@ -35,9 +35,9 @@ jobs:
           if [ $OCVER == 'rel' ]; then
             url="https://api.github.com/repos/acidanthera/OpenCorePkg/releases/latest"
           elif [ $OCVER == 'pre' ]; then
-            url="https://api.github.com/repos/dortania/build-repo/releases"
+            url="https://api.github.com/repos/dortania/build-repo/releases/latest"
           else
-            url="https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases"
+            url="https://api.github.com/repos/wjz304/OpenCore_NO_ACPI_Build/releases/latest"
           fi
 
           ocdownloadurl=$(curl -L ${url} | jq -r .assets[1].browser_download_url)
