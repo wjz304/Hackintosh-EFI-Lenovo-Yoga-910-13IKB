@@ -55,7 +55,7 @@ class UpdateKexts():
             ['HibernationFixup', 'EFI/OC/Kexts/HibernationFixup.kext', 'HibernationFixup.kext'],
             # ['ThunderboltReset', 'EFI/OC/Kexts/ThunderboltReset.kext', 'ThunderboltReset.kext'],
             ['VoodooI2C', 'EFI/OC/Kexts/VoodooI2C.kext', 'VoodooI2C.kext'],
-            ['VoodooI2CHID', 'EFI/OC/Kexts/VoodooI2CHID.kext', 'VoodooI2CHID.kext'],
+            ['VoodooI2C', 'EFI/OC/Kexts/VoodooI2CHID.kext', 'VoodooI2CHID.kext'],
             # ['VoodooTSCSync', 'EFI/OC/Kexts/VoodooTSCSync.kext', 'VoodooTSCSync.kext'],
             ['VoodooInput', 'EFI/OC/Kexts/VoodooInput.kext', 'VoodooInput.kext'],
             ['VoodooPS2', 'EFI/OC/Kexts/VoodooPS2Controller.kext', 'VoodooPS2Controller.kext'],

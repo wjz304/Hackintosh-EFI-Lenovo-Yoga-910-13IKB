@@ -44,7 +44,8 @@ jobs:
           curl -L ${ocdownloadurl} -o oc.zip
           unzip oc.zip -d oc
 
-      - run: |
+      - name: OC Validate
+        run: |
           oc/Utilities/ocvalidate/ocvalidate "EFI/OC/config.plist" || exit 1
 
       #- name: Delete workflow runs
