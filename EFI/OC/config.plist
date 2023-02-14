@@ -575,7 +575,7 @@
 				<key>BundlePath</key>
 				<string>WhateverGreen.kext</string>
 				<key>Comment</key>
-				<string>V1.6.4 | V1.6.3</string>
+				<string>V1.6.5 | V1.6.3</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -647,7 +647,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string>V1.7.9 | Audio patches</string>
+				<string>V1.8.0 | Audio patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -719,7 +719,7 @@
 				<key>BundlePath</key>
 				<string>HibernationFixup.kext</string>
 				<key>Comment</key>
-				<string>V1.4.8 | HibernationFixup</string>
+				<string>V1.4.9 | HibernationFixup</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
