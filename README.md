@@ -5,7 +5,7 @@
 
 ## 说明  
 联想 Yoga 910-13IKB (4K) 的黑苹果 EFI  
-当前支持 Monterey & Ventura  
+当前支持 Monterey 12(b), Ventura 13(b), Sonoma 14(b)
 <!--
 downloads
 <a href="https://github.com/wjz304/Hackintosh-EFI-Lenovo-Yoga-910-13IKB/releases">
