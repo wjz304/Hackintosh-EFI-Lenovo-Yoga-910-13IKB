@@ -647,7 +647,7 @@
 				<key>BundlePath</key>
 				<string>AppleALC.kext</string>
 				<key>Comment</key>
-				<string>V1.8.6 | Audio patches</string>
+				<string>V1.8.7 | Audio patches</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -1025,7 +1025,7 @@
 				<key>BundlePath</key>
 				<string>AirportBrcmFixup.kext</string>
 				<key>Comment</key>
-				<string>V2.1.8 | Airport Broadcom</string>
+				<string>V2.1.9 | Airport Broadcom</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
