@@ -73,3 +73,6 @@ downloads
 ## 鸣谢
 https://github.com/acidanthera/OpenCorePkg  
 https://gitee.com/btwise/OpenCore_NO_ACPI  
+
+## 打赏一下 Sponsoring
+- <img src="https://raw.githubusercontent.com/wjz304/wjz304/master/my/buymeacoffee.png" width="700">
