@@ -53,7 +53,7 @@ jobs:
           pip3 install datetime urllib3 wget
 
       - name: Run Updater
-        run: python3 -u update.py -i ventura -t ${{ secrets.GITHUB_TOKEN }}
+        run: python3 -u update.py -i sonoma -t ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check for changes
         run: |
