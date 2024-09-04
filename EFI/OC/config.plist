@@ -973,7 +973,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooInput.kext</string>
 				<key>Comment</key>
-				<string>V1.1.4</string>
+				<string>V1.1.6 | V1.1.4</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
