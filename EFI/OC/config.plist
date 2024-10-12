@@ -901,7 +901,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext</string>
 				<key>Comment</key>
-				<string>V2.3.6 | input device</string>
+				<string>V2.3.7 | input device</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -919,7 +919,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Keyboard.kext</string>
 				<key>Comment</key>
-				<string>V2.3.6 | input device</string>
+				<string>V2.3.7 | input device</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
@@ -937,7 +937,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Mouse.kext</string>
 				<key>Comment</key>
-				<string>V2.3.6 | input device</string>
+				<string>V2.3.7 | input device</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
@@ -955,7 +955,7 @@
 				<key>BundlePath</key>
 				<string>VoodooPS2Controller.kext/Contents/PlugIns/VoodooPS2Trackpad.kext</string>
 				<key>Comment</key>
-				<string>V2.3.6 | input device</string>
+				<string>V2.3.7 | input device</string>
 				<key>Enabled</key>
 				<false/>
 				<key>ExecutablePath</key>
