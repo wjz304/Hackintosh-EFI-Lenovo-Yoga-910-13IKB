@@ -829,7 +829,7 @@
 				<key>BundlePath</key>
 				<string>VoodooI2C.kext</string>
 				<key>Comment</key>
-				<string>V2.8</string>
+				<string>V2.9.1 | V2.8</string>
 				<key>Enabled</key>
 				<true/>
 				<key>ExecutablePath</key>
